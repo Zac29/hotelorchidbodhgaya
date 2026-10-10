@@ -3,11 +3,14 @@
 import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
 import {
-  ArrowRight, BedDouble, Car, Check, ChevronRight, CircleUserRound, Clock3, Compass,
-  Globe2, HeartHandshake, Landmark, MapPin, Menu, Phone, Plane, UtensilsCrossed, X, Send,
+  ArrowRight, BedDouble, Building2, Car, Check, ChevronLeft, ChevronRight, CircleUserRound, Clock3, Compass,
+  Facebook, Globe2, HeartHandshake, Instagram, Landmark, MapPin, Phone, Plane, Star, TrainFront,
+  UtensilsCrossed, X, Send, UserRound, Youtube,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { images, attractionImages, galleryImages } from "@/lib/images";
 import { attractions, rooms } from "@/lib/constants";
+import HeroBenefits from "@/components/HeroBenefits";
 
 const navItems = [
   ["Home", "#home"],
@@ -28,18 +31,17 @@ const emptyForm: EnquiryState = {
 };
 
 const locationCards = [
-  { title: "Mahabodhi Temple", distance: "~ 1 km", desc: "Main attraction • 5–10 min", icon: images.temple },
-  { title: "Gaya International Airport", distance: "~ 7–11 km", desc: "Easy airport access", icon: images.hotelExterior },
-  { title: "Gaya Junction", distance: "~ 15–20 km", desc: "Railway station", icon: images.temple2 },
-  { title: "Patna Airport", distance: "~ 135 km", desc: "Major airport connection", icon: images.hotelExterior },
+  { title: "Mahabodhi Temple", descriptor: "", distance: "Main attraction in Bodh Gaya", detail: "Central Location", icon: Landmark, pin: true },
+  { title: "Gaya International Airport", descriptor: "", distance: "Approx. 7 – 11 km", detail: "Depending on reference point", icon: Plane, pin: false },
+  { title: "Gaya Junction", descriptor: "(Railway Station)", distance: "Approx. 15 – 20 km", detail: "from Bodh Gaya", icon: TrainFront, pin: true },
+  { title: "Patna Airport", descriptor: "", distance: "Approx. 135 km", detail: "from Bodh Gaya", icon: Building2, pin: true },
 ];
 
-const featureItems = [
-  [BedDouble, "Comfortable Rooms", "For a Relaxing Stay"],
-  [UtensilsCrossed, "Multi-Cuisine Dining", "Delicious & Hygienic Food"],
-  [Landmark, "Prime Location", "Near Mahabodhi Temple"],
-  [CircleUserRound, "24/7 Guest Support", "Always Here for You"],
-] as const;
+const guestReviews = [
+  { name: "Rohit Sharma", place: "Delhi, India", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&h=120&q=80", quote: '“Excellent stay at Hotel Orchid. Very clean rooms, polite staff and great location near Mahabodhi Temple. Highly recommended!”' },
+  { name: "Priya Mehta", place: "Mumbai, India", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80", quote: '“Beautiful property with amazing hospitality. Rooms are spacious and well-maintained. Food was also delicious.”' },
+  { name: "David Lee", place: "Singapore", avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&h=120&q=80", quote: '“Perfect place for a peaceful stay in Bodhgaya. The staff is very helpful and the ambience is truly relaxing. Will visit again!”' },
+];
 
 function Logo() {
   return (
@@ -83,9 +85,9 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
     if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) next.push("Enter a valid email address.");
     if (!/^[0-9+\-\s]{10,15}$/.test(form.mobile.trim())) next.push("Enter a valid mobile number.");
     if (!form.checkIn) next.push("Check-in date is required.");
-    if (!form.checkOut) next.push("Check-out date is required.");
+    if (!compact && !form.checkOut) next.push("Check-out date is required.");
     if (!form.guests) next.push("Please select number of guests.");
-    if (form.checkIn && form.checkOut && form.checkOut < form.checkIn) next.push("Check-out must be after check-in.");
+    if (!compact && form.checkIn && form.checkOut && form.checkOut < form.checkIn) next.push("Check-out must be after check-in.");
     setErrors(next);
     if (!next.length) {
       const body = [
@@ -121,8 +123,11 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
       )}
       <div className="form-grid" style={{ marginTop: sent ? 10 : 0 }}>
         <div className="field">
-          <label htmlFor={`${compact ? "contact" : "hero"}-name`}>Full Name *</label>
-          <input id={`${compact ? "contact" : "hero"}-name`} value={form.name} onChange={(e) => update("name", e.target.value)} placeholder="Enter your name" autoComplete="name" />
+          <label htmlFor={`${compact ? "contact" : "hero"}-name`}>Full Name <span className="required-mark">*</span></label>
+          <div className="input-with-icon">
+            <UserRound aria-hidden="true" size={17} />
+            <input id={`${compact ? "contact" : "hero"}-name`} value={form.name} onChange={(e) => update("name", e.target.value)} placeholder="Enter your name" autoComplete="name" />
+          </div>
         </div>
         {compact && (
           <div className="field">
@@ -131,22 +136,25 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
           </div>
         )}
         <div className="field">
-          <label htmlFor={`${compact ? "contact" : "hero"}-mobile`}>Mobile Number *</label>
-          <input id={`${compact ? "contact" : "hero"}-mobile`} value={form.mobile} onChange={(e) => update("mobile", e.target.value)} placeholder="Enter mobile number" inputMode="tel" autoComplete="tel" />
+          <label htmlFor={`${compact ? "contact" : "hero"}-mobile`}>{compact ? "Phone Number" : "Mobile Number"} <span className="required-mark">*</span></label>
+          <div className="input-with-icon">
+            <Phone aria-hidden="true" size={17} />
+            <input id={`${compact ? "contact" : "hero"}-mobile`} value={form.mobile} onChange={(e) => update("mobile", e.target.value)} placeholder="Enter mobile number" inputMode="tel" autoComplete="tel" />
+          </div>
         </div>
         <div className="form-row">
           <div className="field">
-            <label htmlFor={`${compact ? "contact" : "hero"}-checkin`}>Check-in Date *</label>
+            <label htmlFor={`${compact ? "contact" : "hero"}-checkin`}>Check-in Date <span className="required-mark">*</span></label>
             <input id={`${compact ? "contact" : "hero"}-checkin`} type="date" value={form.checkIn} onChange={(e) => update("checkIn", e.target.value)} />
           </div>
-          <div className="field">
-            <label htmlFor={`${compact ? "contact" : "hero"}-checkout`}>Check-out Date *</label>
+          {!compact && <div className="field">
+            <label htmlFor={`${compact ? "contact" : "hero"}-checkout`}>Check-out Date <span className="required-mark">*</span></label>
             <input id={`${compact ? "contact" : "hero"}-checkout`} type="date" value={form.checkOut} onChange={(e) => update("checkOut", e.target.value)} />
-          </div>
+          </div>}
         </div>
         <div className="form-row">
           <div className="field">
-            <label htmlFor={`${compact ? "contact" : "hero"}-guests`}>Number of Guests *</label>
+            <label htmlFor={`${compact ? "contact" : "hero"}-guests`}>Number of Guests <span className="required-mark">*</span></label>
             <select id={`${compact ? "contact" : "hero"}-guests`} value={form.guests} onChange={(e) => update("guests", e.target.value)}>
               <option value="">Select guests</option>
               <option>1 Guest</option><option>2 Guests</option><option>3 Guests</option><option>4 Guests</option><option>5+ Guests</option>
@@ -165,7 +173,7 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
           <textarea id={`${compact ? "contact" : "hero"}-message`} value={form.message} onChange={(e) => update("message", e.target.value)} placeholder="Any special request?" />
         </div>
         <button className="gold-btn form-submit" type="submit">
-          <Send size={13} /> {compact ? "SUBMIT ENQUIRY" : "SEND ENQUIRY"} <ArrowRight size={13} />
+          <Send size={13} /> {compact ? "Submit Enquiry" : "Send Enquiry"} <ArrowRight size={13} />
         </button>
       </div>
     </form>
@@ -173,11 +181,8 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
 }
 
 export default function HotelHomepage() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState<number | null>(null);
   const [roomOpen, setRoomOpen] = useState<number | null>(null);
-
-  const closeMenu = () => setMenuOpen(false);
 
   useEffect(() => {
     if (galleryOpen === null && roomOpen === null) return;
@@ -195,67 +200,41 @@ export default function HotelHomepage() {
       <section id="home" className="hero">
         <Image className="hero-bg-image" src={images.hero} alt="" fill priority sizes="100vw" aria-hidden="true" />
         <div className="hero-bg-overlay" aria-hidden="true" />
-        <header className="navbar">
-          <div className="container nav-inner">
-            <Logo />
-            <nav className="nav-links" aria-label="Primary navigation">
-              {navItems.map(([label, href], index) => (
-                <a key={label} href={href} className={`nav-link ${index === 0 ? "active" : ""}`}>{label}</a>
-              ))}
-            </nav>
-            <div className="nav-contact">
-              <a className="phone" href="tel:+919876543210"><Phone size={14} /><span>+91 98765 43210<small>24/7 Guest Support</small></span></a>
-              <a className="gold-btn" href="#contact">ENQUIRE NOW <ArrowRight size={12} /></a>
-            </div>
-            <button className="menu-btn" aria-label="Toggle navigation" aria-expanded={menuOpen} onClick={() => setMenuOpen((v) => !v)}>
-              {menuOpen ? <X size={25} /> : <Menu size={25} />}
-            </button>
-          </div>
-          <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-            {navItems.map(([label, href]) => <a key={label} href={href} onClick={closeMenu}>{label}</a>)}
-            <a href="#contact" onClick={closeMenu} style={{ color: "#e0ad52", fontWeight: 800 }}>ENQUIRE NOW →</a>
-          </div>
-        </header>
-
         <div className="container hero-main">
-          <div className="hero-copy">
-            <div className="eyebrow">A PEACEFUL STAY NEAR MAHABODHI TEMPLE</div>
-            <h1 className="hero-title">A Spiritual Journey<br />with Modern Comfort<br /><span>in Bodhgaya</span></h1>
-            <p className="hero-desc">Experience warm hospitality, elegant rooms and a peaceful atmosphere near the sacred Mahabodhi Temple.</p>
-            <div className="hero-actions">
-              <a className="gold-btn" href="#rooms">EXPLORE ROOMS <ArrowRight size={13} /></a>
-              <a className="outline-btn" href="#contact">ENQUIRE NOW <ArrowRight size={13} /></a>
+          <div className="hero-left">
+            <div className="hero-copy">
+              <div className="eyebrow">A PEACEFUL STAY NEAR MAHABODHI TEMPLE</div>
+              <h1 className="hero-title">A Spiritual Journey<br />with Modern Comfort<br /><span>in Bodhgaya</span></h1>
+              <p className="hero-desc">Experience warm hospitality, elegant rooms and a peaceful atmosphere near the sacred Mahabodhi Temple.</p>
+              <div className="hero-actions">
+                <a className="gold-btn" href="#rooms">EXPLORE ROOMS <ArrowRight size={13} /></a>
+                <a className="outline-btn" href="#contact">ENQUIRE NOW <ArrowRight size={13} /></a>
+              </div>
             </div>
+            <HeroBenefits />
           </div>
           <div className="hero-form-wrap">
             <EnquiryForm />
           </div>
         </div>
-
-        <div className="hero-features">
-          <div className="container">
-            {featureItems.map(([Icon, title, sub]) => (
-              <div className="feature" key={title}>
-                <Icon className="feature-icon" size={25} strokeWidth={1.5} />
-                <div><strong>{title}</strong><span>{sub}</span></div>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       <section className="section compact location">
-        <span className="decor left">❧</span>
+        <span className="decor left location-floral" aria-hidden="true" />
+        <span className="decor right location-floral" aria-hidden="true" />
         <div className="container">
-          <SectionHeading centered eyebrow="A PEACEFUL BASE IN BODH GAYA" title="Close to the Places That Matter" subtitle="Easy access to Bodh Gaya's most important spiritual, cultural and travel destinations." />
+          <div className="location-head">
+            <h2 className="section-title">Perfectly Located for Your Convenience</h2>
+            <p className="section-subtitle">Easy access to major attractions and transport hubs from Bodh Gaya.</p>
+          </div>
           <div className="location-grid">
             {locationCards.map((item) => (
               <div className="location-card" key={item.title}>
-                <div className="location-icon"><Image src={item.icon} alt="" width={58} height={58} /></div>
-                <div>
-                  <h3>{item.title}</h3>
-                  <b>{item.distance}</b>
-                  <p>{item.desc}</p>
+                <div className="location-icon" aria-hidden="true"><item.icon size={43} strokeWidth={2.2} /></div>
+                <div className="location-card-copy">
+                  <h3>{item.title} {item.descriptor && <span>{item.descriptor}</span>}</h3>
+                  <b className={item.pin ? "has-pin" : ""}>{item.distance}</b>
+                  <p className={"location-detail" + (item.pin ? " has-pin" : "")}>{item.detail}</p>
                 </div>
                 <ChevronRight className="location-arrow" size={17} />
               </div>
@@ -265,11 +244,14 @@ export default function HotelHomepage() {
       </section>
 
       <section className="section cream" id="attractions">
-        <span className="decor left">❧</span><span className="decor right">❧</span>
+        <span className="decor left" aria-hidden="true">❧</span><span className="decor right" aria-hidden="true">❧</span>
         <div className="container">
           <div className="section-head-row">
-            <SectionHeading eyebrow="EXPLORE BODHGAYA" title="Spiritual Destinations & Tourist Attractions" subtitle="Discover temples, monasteries, caves and peaceful places around Bodh Gaya." />
-            <a className="small-gold-btn" href="https://www.google.com/maps/search/?api=1&query=Bodhgaya+tourist+attractions" target="_blank" rel="noreferrer">Explore nearby <ArrowRight size={12} /></a>
+            <div className="reference-section-heading">
+              <h2 className="section-title">Explore Bodhgaya</h2>
+              <p className="section-subtitle">Spiritual Destinations &amp; Tourist Attractions</p>
+            </div>
+            <a className="small-gold-btn attractions-cta" href="https://www.google.com/maps/search/?api=1&query=Bodhgaya+tourist+attractions" target="_blank" rel="noreferrer">View All Places <ArrowRight size={12} /></a>
           </div>
           <div className="attractions-scroll">
             {attractions.map(([name, distance, desc], i) => (
@@ -288,8 +270,15 @@ export default function HotelHomepage() {
       <section className="section rooms" id="rooms">
         <div className="container">
           <div className="section-head-row rooms-head">
-            <SectionHeading eyebrow="RESTFUL ROOMS" title="A Room for Every Kind of Stay" subtitle="Spacious, well-appointed rooms designed for a relaxing and memorable stay." />
-            <a className="small-gold-btn" href="#contact">View All Rooms <ArrowRight size={12} /></a>
+            <div className="reference-section-heading">
+              <h2 className="section-title">Our Rooms</h2>
+              <p className="section-subtitle">Spacious, elegant and well-equipped rooms for a relaxing stay in Bodhgaya.</p>
+            </div>
+            <div className="rooms-heading-actions">
+              <a className="small-gold-btn" href="#contact">View All Rooms <ArrowRight size={12} /></a>
+              <button className="round-arrow previous" type="button" aria-label="Previous rooms"><ChevronLeft size={16} /></button>
+              <button className="round-arrow next" type="button" aria-label="Next rooms"><ArrowRight size={16} /></button>
+            </div>
           </div>
           <div className="rooms-grid">
             {rooms.map((room, i) => (
@@ -315,16 +304,17 @@ export default function HotelHomepage() {
         <div className="container about-grid">
           <div className="about-image">
             <Image src={images.lobby} alt="Warmly lit hotel lobby inspiration" fill sizes="(max-width: 900px) 100vw, 60vw" />
+            <span className="about-tour"><span className="tour-play">▶</span> Watch Our Hotel Tour</span>
           </div>
           <div className="about-copy">
             <SectionHeading eyebrow="ABOUT HOTEL ORCHID" title="Hospitality Rooted in Peace" />
             <p>Hotel Orchid Bodhgaya offers a perfect blend of modern comfort and traditional hospitality. Located close to the sacred Mahabodhi Temple, we provide a serene and welcoming stay for pilgrims, families and travellers from around the world.</p>
             <div className="about-features">
               {[
-                [BedDouble, "Comfortable Rooms", "Relaxing stays"],
-                [UtensilsCrossed, "Multi-Cuisine Dining", "Delicious food"],
-                [Clock3, "24/7 Guest Support", "Always here for you"],
-                [Car, "Easy Local Travel", "Taxis & tours"],
+                [BedDouble, "Comfortable Rooms", "Comfortable Rooms"],
+                [UtensilsCrossed, "Multi-Cuisine Dining", "Multi-Cuisine Dining"],
+                [Clock3, "24/7 Guest Support", "24/7 Guest Support"],
+                [Car, "Easy Access to Local Travel", "Easy Access to Local Travel"],
               ].map(([Icon, title, sub]) => (
                 <div className="about-feature" key={title as string}>
                   <Icon className="about-feature-icon" size={20} />
@@ -339,8 +329,11 @@ export default function HotelHomepage() {
       <section className="section gallery" id="gallery">
         <div className="container">
           <div className="section-head-row">
-            <SectionHeading eyebrow="A LOOK AROUND" title="Spaces to Settle In" subtitle="A glimpse of our property, rooms, dining and beautiful surroundings." />
-            <button className="small-gold-btn" onClick={() => setGalleryOpen(0)}>View Full Gallery <ArrowRight size={12} /></button>
+              <div className="reference-section-heading">
+                <h2 className="section-title">Our Gallery</h2>
+                <p className="section-subtitle">Take a glimpse of our property, rooms, dining and the beautiful surroundings.</p>
+              </div>
+            <button className="small-gold-btn gallery-cta" onClick={() => setGalleryOpen(0)}>View Full Gallery <ArrowRight size={12} /></button>
           </div>
           <div className="gallery-grid">
             {galleryImages.map((src, i) => (
@@ -354,19 +347,21 @@ export default function HotelHomepage() {
 
       <section className="section testimonials">
         <div className="container">
-          <div className="section-head-row">
-            <SectionHeading eyebrow="THE ORCHID EXPERIENCE" title="A More Thoughtful Stay" subtitle="A peaceful base for temple visits, restful nights and the small details that make travel easier." />
+          <div className="section-head-row reviews-heading">
+            <div className="reference-section-heading">
+              <h2 className="section-title">What Our Guests Say</h2>
+              <p className="section-subtitle">Real experiences from our valued guests.</p>
+            </div>
+            <div className="review-arrows"><button aria-label="Previous guest reviews"><ChevronLeft size={16} /></button><button aria-label="Next guest reviews"><ArrowRight size={16} /></button></div>
           </div>
-          <div className="testimonial-grid stay-promises">
-            {[
-              [BedDouble, "Rest well", "Choose from comfortable room options for solo visits, couples and families."],
-              [MapPin, "Stay close", "Spend more of your visit around Bodh Gaya’s spiritual and cultural landmarks."],
-              [HeartHandshake, "Feel looked after", "Reach out for help with your stay and local travel plans."],
-            ].map(([Icon, title, copy]) => (
-              <article className="testimonial promise-card" key={title as string}>
-                <div className="promise-icon"><Icon size={23} strokeWidth={1.7} /></div>
-                <h3>{title as string}</h3>
-                <p>{copy as string}</p>
+          <div className="testimonial-grid guest-review-grid">
+            {guestReviews.map((review) => (
+              <article className="testimonial guest-review" key={review.name}>
+                <div className="guest-review-head">
+                  <Image src={review.avatar} alt="" width={58} height={58} />
+                  <div><strong>{review.name}</strong><span>{review.place}</span><div className="review-stars" aria-label="5 out of 5 stars">{Array.from({ length: 5 }, (_, i) => <Star key={i} size={15} fill="currentColor" />)}</div></div>
+                </div>
+                <p>{review.quote}</p>
               </article>
             ))}
           </div>
@@ -375,10 +370,12 @@ export default function HotelHomepage() {
 
       <section className="section travel">
         <span className="decor left">❧</span><span className="decor right">❧</span>
-        <div className="container">
+        <div className="container travel-layout">
+          <div className="travel-temple" aria-hidden="true"><Image src={images.temple} alt="" fill sizes="300px" /></div>
+          <div className="travel-content">
           <div className="section-head-row">
-            <SectionHeading eyebrow="MAKE THE MOST OF YOUR STAY" title="Explore Bodh Gaya with Ease" subtitle="Spiritual highlights, local sightseeing and travel information." />
-            <a className="small-gold-btn" href="#attractions">Explore All Attractions <ArrowRight size={12} /></a>
+            <div className="reference-section-heading"><h2 className="section-title">Plan Your Bodhgaya Journey</h2><p className="section-subtitle">Spiritual highlights, local sightseeing and travel information.</p></div>
+            <a className="small-gold-btn attractions-cta" href="#attractions">Explore All Attractions <ArrowRight size={12} /></a>
           </div>
           <div className="travel-grid">
             {[
@@ -386,13 +383,17 @@ export default function HotelHomepage() {
               [Compass, "Local Sightseeing", ["Dungeshwari Cave", "Sujata Stupa", "Muchalinda Sarovar", "Vishnupad Temple"]],
               [Plane, "Airport & Railway", ["Gaya International Airport • ~ 7–11 km", "Gaya Junction • ~ 15–20 km", "Patna Airport • ~ 135 km"]],
               [Car, "Local Transport", ["Taxis & Cabs", "Auto Rickshaws", "Local Sightseeing Tours", "Easy connectivity to nearby places"]],
-            ].map(([Icon, title, list]) => (
-              <article className="travel-card" key={title as string}>
-                <Icon className="travel-icon" size={24} />
-                <h3>{title as string}</h3>
-                <ul>{(list as string[]).map((item) => <li key={item}><Check size={11} />{item}</li>)}</ul>
-              </article>
-            ))}
+            ].map(([Icon, title, list]) => {
+              const TravelIcon = Icon as LucideIcon;
+              return (
+                <article className="travel-card" key={title as string}>
+                  <TravelIcon className="travel-icon" size={24} />
+                  <h3>{title as string}</h3>
+                  <ul>{(list as string[]).map((item) => <li key={item}><Check size={11} />{item}</li>)}</ul>
+                </article>
+              );
+            })}
+          </div>
           </div>
         </div>
       </section>
@@ -400,7 +401,11 @@ export default function HotelHomepage() {
       <section className="section contact" id="contact">
         <div className="container contact-grid">
           <div className="contact-copy">
-            <SectionHeading eyebrow="GET IN TOUCH" title="We're Here to Help" subtitle="Have a question or want to make a booking? Send us an enquiry and we'll get back to you soon." />
+            <div className="contact-heading">
+              <h2>Get In Touch</h2>
+              <h3>We’d Love to Hear From You</h3>
+              <p>Have a question or want to make a booking?<br />Send us a message and we’ll get back to you soon.</p>
+            </div>
             <div className="contact-list" style={{marginTop:22}}>
               <div className="contact-item"><Phone size={18} /><div><strong><a href="tel:+919876543210">+91 98765 43210</a></strong><span>Available 24/7</span></div></div>
               <div className="contact-item"><MapPin size={18} /><div><strong>Near Mahabodhi Temple</strong><span>Bodh Gaya, Bihar – 824231, India</span></div></div>
@@ -409,10 +414,8 @@ export default function HotelHomepage() {
           </div>
           <EnquiryForm compact />
           <a className="map" href="https://www.google.com/maps/search/?api=1&query=Hotel+Orchid+Bodhgaya" target="_blank" rel="noreferrer" aria-label="Open Hotel Orchid Bodhgaya in Google Maps">
-            <span className="map-kicker"><MapPin size={14} /> FIND YOUR WAY</span>
-            <strong>Make Bodh Gaya easy to explore.</strong>
-            <span className="map-copy">Open the map for directions to Hotel Orchid and nearby landmarks.</span>
-            <span className="map-link">Open in Google Maps <ArrowRight size={14} /></span>
+            <iframe title="Map showing Hotel Orchid Bodhgaya" src="https://maps.google.com/maps?q=Hotel%20Orchid%20Bodhgaya&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy" />
+            <span className="map-marker"><MapPin size={27} fill="currentColor" /><b>Hotel Orchid Bodhgaya</b><small>Near Mahabodhi Temple</small></span>
           </a>
         </div>
       </section>
@@ -422,10 +425,12 @@ export default function HotelHomepage() {
           <div>
             <Logo />
             <p className="footer-desc">A perfect blend of modern comfort and traditional hospitality near the sacred Mahabodhi Temple.</p>
+            <div className="footer-socials"><a href="#contact" aria-label="Facebook"><Facebook size={15} /></a><a href="#contact" aria-label="Instagram"><Instagram size={15} /></a><a href="#contact" aria-label="YouTube"><Youtube size={15} /></a><a href="#contact" aria-label="WhatsApp"><Phone size={15} /></a></div>
           </div>
           <div><h4>Quick Links</h4><div className="footer-links">{navItems.map(([label, href]) => <a href={href} key={label}>{label}</a>)}</div></div>
           <div><h4>Our Services</h4><div className="footer-links"><span>Comfortable Rooms</span><span>Multi-Cuisine Restaurant</span><span>Travel Assistance</span><span>24/7 Guest Support</span></div></div>
           <div><h4>Nearby Places</h4><div className="footer-links"><span>Mahabodhi Temple</span><span>80 Feet Buddha</span><span>Thai Temple</span><span>Japanese Temple</span><span>Dungeshwari Cave</span></div></div>
+          <div className="footer-contact-info"><h4>Contact Info</h4><div className="footer-links"><span><MapPin size={13} /> Near Mahabodhi Temple,<br />Bodh Gaya, Bihar – 824231, India</span><a href="tel:+919876543210"><Phone size={13} /> +91 98765 43210</a><a href="mailto:info@hotelorchidbodhgaya.com"><Globe2 size={13} /> info@hotelorchidbodhgaya.com</a></div></div>
         </div>
         <div className="container footer-bottom">
           <span>© 2026 Hotel Orchid Bodhgaya. All Rights Reserved.</span>

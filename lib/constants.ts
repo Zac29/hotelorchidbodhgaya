@@ -5,7 +5,7 @@ export const rooms = [
     guests: "2 Guests",
     bed: "King Bed",
     image: "bedroom1",
-    amenities: ["AC", "Wi-Fi", "Attached Bath"],
+    amenities: ["AC", "Wi-Fi", "TV", "Attached Bath"],
   },
   {
     name: "Executive Room",
@@ -13,7 +13,7 @@ export const rooms = [
     guests: "2–3 Guests",
     bed: "King Bed",
     image: "bedroom2",
-    amenities: ["AC", "Wi-Fi", "Work Desk"],
+    amenities: ["AC", "Wi-Fi", "Work Desk", "City View"],
   },
   {
     name: "Family Room",
@@ -21,7 +21,7 @@ export const rooms = [
     guests: "4 Guests",
     bed: "2 King Beds",
     image: "bedroom3",
-    amenities: ["AC", "Wi-Fi", "Family Friendly"],
+    amenities: ["AC", "Wi-Fi", "Extra Space", "Family Friendly"],
   },
   {
     name: "Suite Room",
@@ -29,7 +29,7 @@ export const rooms = [
     guests: "2–4 Guests",
     bed: "King Bed",
     image: "bedroom4",
-    amenities: ["AC", "Wi-Fi", "Premium"],
+    amenities: ["AC", "Wi-Fi", "Living Area", "Premium"],
   },
 ] as const;
 

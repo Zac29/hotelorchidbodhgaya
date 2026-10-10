@@ -1,0 +1,472 @@
+
+/* =====================================================
+   HOTEL ORCHID BODHGAYA
+   STICKY GLASSMORPHISM NAVBAR
+===================================================== */
+
+.orchid-navbar,
+.orchid-navbar * {
+  box-sizing: border-box;
+}
+
+.orchid-navbar {
+  --orchid-gold: #edbd69;
+  --orchid-navy: #07162c;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  width: 100%;
+  height: 76px;
+  margin-bottom: -76px;
+
+  color: #fff;
+
+  /* Light transparent glass */
+  background: rgba(10, 26, 48, 0.16);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+
+  font-family: var(--font-sans), Arial, sans-serif;
+
+  transition:
+    background 220ms ease,
+    box-shadow 220ms ease;
+}
+
+/* Slightly stronger glass when scrolling */
+.orchid-navbar.is-scrolled {
+  background: rgba(7, 22, 44, 0.72);
+  box-shadow: 0 5px 22px rgba(0, 0, 0, 0.12);
+}
+
+.orchid-navbar a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.orchid-navbar-inner {
+  width: min(1380px, calc(100% - 64px));
+  height: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* BRAND */
+
+.orchid-logo {
+  display: inline-flex;
+  flex: 0 0 220px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.orchid-logo-mark {
+  display: block;
+  flex: 0 0 43px;
+  width: 43px;
+  height: 43px;
+  color: var(--orchid-gold);
+}
+
+.orchid-logo-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+}
+
+.orchid-logo-title {
+  display: block;
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.055em;
+}
+
+.orchid-logo-subtitle {
+  display: block;
+  margin: 0;
+  padding-left: 2px;
+  color: var(--orchid-gold);
+  font-size: 8px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.4em;
+}
+
+/* DESKTOP LINKS */
+
+.orchid-desktop-nav {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 2.1vw, 34px);
+  min-width: 0;
+  height: 100%;
+}
+
+.orchid-nav-link {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+
+  transition: color 180ms ease;
+}
+
+.orchid-nav-link::after {
+  position: absolute;
+  right: 0;
+  bottom: 20px;
+  left: 0;
+  height: 2px;
+  content: "";
+  background: var(--orchid-gold);
+  transform: scaleX(0);
+  transition: transform 180ms ease;
+}
+
+.orchid-nav-link:hover,
+.orchid-nav-link.is-active {
+  color: var(--orchid-gold);
+}
+
+.orchid-nav-link:hover::after,
+.orchid-nav-link.is-active::after {
+  transform: scaleX(1);
+}
+
+/* RIGHT SIDE */
+
+.orchid-navbar-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  white-space: nowrap;
+}
+
+.orchid-phone-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  transition: color 180ms ease;
+}
+
+.orchid-phone-link:hover {
+  color: var(--orchid-gold);
+}
+
+.orchid-enquire-button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  min-height: 36px;
+  padding: 0 12px;
+
+  border: 1px solid rgba(255, 226, 171, 0.55);
+  border-radius: 5px;
+
+  background: linear-gradient(135deg, #f1c873, #dfa646);
+  color: #172337 !important;
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.orchid-enquire-button:hover {
+  background: linear-gradient(135deg, #f8d78f, #e9b34f);
+  transform: translateY(-1px);
+}
+
+/* MOBILE TOGGLE */
+
+.orchid-menu-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* MOBILE NAVIGATION */
+
+.orchid-mobile-nav {
+  display: none;
+}
+
+/* COMPACT DESKTOP */
+
+@media (min-width: 761px) and (max-width: 1150px) {
+  .orchid-navbar {
+    height: 68px;
+    margin-bottom: -68px;
+  }
+
+  .orchid-navbar-inner {
+    width: calc(100% - 36px);
+    gap: 14px;
+  }
+
+  .orchid-logo {
+    flex-basis: 175px;
+    gap: 8px;
+  }
+
+  .orchid-logo-mark {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .orchid-logo-title {
+    font-size: 12px;
+  }
+
+  .orchid-logo-subtitle {
+    font-size: 7px;
+    letter-spacing: 0.33em;
+  }
+
+  .orchid-desktop-nav {
+    gap: clamp(12px, 1.6vw, 19px);
+  }
+
+  .orchid-nav-link {
+    font-size: 10px;
+  }
+
+  .orchid-nav-link::after {
+    bottom: 17px;
+  }
+
+  .orchid-navbar-actions {
+    gap: 9px;
+  }
+
+  .orchid-phone-link {
+    font-size: 9px;
+  }
+
+  .orchid-enquire-button {
+    min-height: 32px;
+    padding-inline: 8px;
+    font-size: 8px;
+  }
+}
+
+/* TABLET AND MOBILE */
+
+@media (max-width: 760px) {
+  .orchid-navbar {
+    height: 68px;
+    margin-bottom: -68px;
+  }
+
+  .orchid-navbar-inner {
+    width: calc(100% - 32px);
+    gap: 12px;
+  }
+
+  .orchid-logo {
+    flex: 0 1 auto;
+    gap: 9px;
+  }
+
+  .orchid-logo-mark {
+    flex: 0 0 37px;
+    width: 37px;
+    height: 37px;
+  }
+
+  .orchid-logo-title {
+    font-size: 13px;
+  }
+
+  .orchid-logo-subtitle {
+    font-size: 7px;
+    letter-spacing: 0.34em;
+  }
+
+  .orchid-desktop-nav,
+  .orchid-navbar-actions {
+    display: none;
+  }
+
+  .orchid-menu-toggle {
+    display: inline-flex;
+    flex: 0 0 40px;
+    margin-left: auto;
+  }
+
+  .orchid-mobile-nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    padding: 8px 20px 18px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(237, 189, 105, 0.2);
+
+    background: rgba(4, 16, 31, 0.97);
+
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2);
+
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-5px);
+
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease,
+      visibility 180ms ease;
+  }
+
+  .orchid-mobile-nav.is-open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .orchid-mobile-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 44px;
+    padding: 11px 0;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.93);
+
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .orchid-mobile-link:hover,
+  .orchid-mobile-link.is-active {
+    color: var(--orchid-gold);
+  }
+
+  .orchid-mobile-enquire {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    gap: 8px;
+
+    min-height: 38px;
+    margin-top: 12px;
+    padding: 0 14px;
+
+    border: 1px solid rgba(255, 226, 171, 0.45);
+    border-radius: 5px;
+
+    background: linear-gradient(135deg, #f1c873, #dfa646);
+    color: #172337 !important;
+
+    font-size: 10px;
+    font-weight: 800;
+  }
+}
+
+/* SMALL PHONES */
+
+@media (max-width: 360px) {
+  .orchid-navbar-inner {
+    width: calc(100% - 24px);
+  }
+
+  .orchid-logo {
+    gap: 7px;
+  }
+
+  .orchid-logo-mark {
+    flex-basis: 32px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .orchid-logo-title {
+    font-size: 11px;
+    letter-spacing: 0.035em;
+  }
+
+  .orchid-logo-subtitle {
+    font-size: 6px;
+    letter-spacing: 0.3em;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.orchid-navbar a:focus-visible,
+.orchid-menu-toggle:focus-visible {
+  outline: 2px solid #f1c873;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orchid-navbar *,
+  .orchid-navbar *::before,
+  .orchid-navbar *::after {
+    transition: none !important;
+  }
+}
