@@ -803,7 +803,7 @@ body { background:#fbf8f2; }
   text-transform:none;
 }
 .enquiry-card::after { opacity:.8; }
-.orchid-navbar.orchid-navbar { height:94px; margin-bottom:-94px; background:rgba(10,26,48,.55); }
+.orchid-navbar.orchid-navbar { height:60px; margin-bottom:-94px; background:rgba(10,26,48,.55); }
 .orchid-navbar.orchid-navbar .orchid-navbar-inner { width:min(1600px,calc(100% - 16.7%)); }
 .enquiry-card .required-mark { color:#d7352a; }
 .enquiry-card::after {
@@ -864,9 +864,42 @@ body { background:#fbf8f2; }
   .enquiry-card p { font-size:13px; }
 }
 
-/* Keep the hero benefits directly beneath the left side copy and actions. */
+/* Fix room Details button visibility */
+#rooms .outline-btn {
+  background: #ffffff !important;
+  color: #0c2340 !important;
+  border: 1px solid #b87d28 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Keep the button visible and readable on hover */
+#rooms .outline-btn:hover {
+  background: #0c2340 !important;
+  color: #ffffff !important;
+  border-color: #0c2340 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(-2px);
+}
+
+/* Keyboard accessibility */
+#rooms .outline-btn:focus-visible {
+  outline: 3px solid #d4a373;
+  outline-offset: 3px;
+}
+
+/* Keep the hero benefits directly beneath the left-side copy and actions. */
 @media (min-width: 981px) {
-  .hero-left { padding-left: clamp(0px, 4.17vw, 80px); }
+  .hero-left {
+    padding-left: clamp(0px, 4.17vw, 80px);
+  }
+
   .hero-main {
     box-sizing: border-box;
     min-height: 800px;
@@ -874,6 +907,7 @@ body { background:#fbf8f2; }
     padding-top: 95px;
     padding-bottom: 12px;
   }
+
   .hero-left {
     display: flex;
     min-width: 0;
@@ -881,17 +915,43 @@ body { background:#fbf8f2; }
     align-self: stretch;
     padding-top: 47px;
   }
-  .hero-copy { padding-bottom: 0; transform: none; marigin-left: 80px; }
-  .hero-form-wrap { align-self: start; margin-top: 20px; }
-  .hero-form-wrap .enquiry-card { margin-top: 0; }
+
+  .hero-copy {
+    padding-bottom: 0;
+    transform: none;
+    margin-left: 80px;
+  }
+
+  .hero-form-wrap {
+    align-self: start;
+    margin-top: 20px;
+  }
+
+  .hero-form-wrap .enquiry-card {
+    margin-top: 0;
+  }
 }
+
 @media (min-width: 981px) and (max-width: 1250px) {
-  .hero-main { min-height: 800px; padding-top: 86px; }
-  .hero-left { padding-top: 49px; }
+  .hero-main {
+    min-height: 800px;
+    padding-top: 86px;
+  }
+
+  .hero-left {
+    padding-top: 49px;
+  }
 }
+
 @media (max-width: 980px) {
-  .hero-left { display: block; min-width: 0; }
-  .hero-benefits { margin-top: 24px; }
+  .hero-left {
+    display: block;
+    min-width: 0;
+  }
+
+  .hero-benefits {
+    margin-top: 24px;
+  }
 }
 
 /* Compact desktop hero. */
@@ -900,17 +960,46 @@ body { background:#fbf8f2; }
     height: 600px;
     min-height: 600px;
   }
+
   .hero-main {
     height: 600px;
     min-height: 600px;
     padding-top: 78px;
     padding-bottom: 8px;
   }
-  .hero-left { padding-top: 49px; }
-  .hero-form-wrap { margin-top: 22px; }
+
+  .hero-left {
+    padding-top: 49px;
+  }
+
+  .hero-form-wrap {
+    margin-top: 22px;
+  }
+
   .hero-form-wrap .enquiry-card {
     padding: 18px 20px 20px;
   }
+}
+
+/* Remove extra left spacing on mobile only. */
+@media (max-width: 767px) {
+  .hero-main {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .hero-left {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  .hero-copy {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    transform: none;
+  }
+}
+
   .hero-form-wrap .enquiry-card h2 { font-size: clamp(26px, 1.6vw, 31px); }
   .hero-form-wrap .enquiry-card p { margin: 5px 0 15px; font-size: clamp(12px, .73vw, 14px); }
   .hero-form-wrap .enquiry-card .form-grid { gap: 9px; }
@@ -922,7 +1011,7 @@ body { background:#fbf8f2; }
   .hero-form-wrap .enquiry-card .field textarea { min-height: 46px; padding: 8px 9px; font-size: 11px; }
   .hero-form-wrap .enquiry-card .form-submit { min-height: 40px; font-size: 13px; }
   .hero-benefits { height: 76px; }
-}
+
 @media (max-width: 980px) {
   .hero { height: auto; min-height: 0; }
   .hero-main { height: auto; min-height: 0; }

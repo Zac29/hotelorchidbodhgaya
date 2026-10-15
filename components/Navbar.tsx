@@ -1,22 +1,22 @@
-
 "use client";
 
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import { ArrowRight, Menu, Phone, X } from "lucide-react";
 import "./Navbar.css";
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Rooms", href: "#rooms" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "About Us", href: "#about" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "Rooms", href: "/rooms" },
+  { label: "Gallery", href: "/#gallery" },
+  { label: "About Us", href: "/#about" },
+  { label: "Contact Us", href: "/#contact" },
 ];
 
 function Logo() {
   return (
-    <a
-      href="#home"
+    <Link
+      href="/#home"
       className="orchid-logo"
       aria-label="Hotel Orchid Bodhgaya home"
     >
@@ -65,21 +65,45 @@ function Logo() {
         <span className="orchid-logo-title">HOTEL ORCHID</span>
         <span className="orchid-logo-subtitle">BODHGAYA</span>
       </span>
-    </a>
+    </Link>
   );
 }
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState("#home");
+  const [activeLink, setActiveLink] = useState("/#home");
   const [scrolled, setScrolled] = useState(false);
 
-  // Update the sticky navbar appearance while scrolling.
-  if (typeof window !== "undefined") {
-    // The scroll listener is registered in the effect below.
-  }
+  useEffect(() => {
+    const updateScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
 
-  ReactScrollEffect(setScrolled);
+    const updateActiveLink = () => {
+      if (window.location.pathname === "/rooms") {
+        setActiveLink("/rooms");
+      } else {
+        const hash = window.location.hash;
+        setActiveLink(hash ? `/${hash}` : "/#home");
+      }
+    };
+
+    updateScroll();
+    updateActiveLink();
+
+    window.addEventListener("scroll", updateScroll, {
+      passive: true,
+    });
+
+    window.addEventListener("hashchange", updateActiveLink);
+    window.addEventListener("popstate", updateActiveLink);
+
+    return () => {
+      window.removeEventListener("scroll", updateScroll);
+      window.removeEventListener("hashchange", updateActiveLink);
+      window.removeEventListener("popstate", updateActiveLink);
+    };
+  }, []);
 
   function handleNavigation(href: string) {
     setActiveLink(href);
@@ -98,16 +122,19 @@ export default function Navbar() {
           aria-label="Main navigation"
         >
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               onClick={() => handleNavigation(item.href)}
               className={`orchid-nav-link ${
                 activeLink === item.href ? "is-active" : ""
               }`}
+              aria-current={
+                activeLink === item.href ? "page" : undefined
+              }
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -120,14 +147,14 @@ export default function Navbar() {
             <span>+91 98765 43210</span>
           </a>
 
-          <a
+          <Link
             className="orchid-enquire-button"
-            href="#contact"
-            onClick={() => handleNavigation("#contact")}
+            href="/#contact"
+            onClick={() => handleNavigation("/#contact")}
           >
             <span>ENQUIRE NOW</span>
             <ArrowRight size={12} strokeWidth={2} />
-          </a>
+          </Link>
         </div>
 
         <button
@@ -151,40 +178,28 @@ export default function Navbar() {
         aria-hidden={!menuOpen}
       >
         {navItems.map((item) => (
-          <a
+          <Link
             key={item.href}
             href={item.href}
             tabIndex={menuOpen ? 0 : -1}
+            onClick={() => handleNavigation(item.href)}
             className={`orchid-mobile-link ${
               activeLink === item.href ? "is-active" : ""
             }`}
-            onClick={() => handleNavigation(item.href)}
           >
             {item.label}
-          </a>
+          </Link>
         ))}
 
-        <a
-          href="#contact"
+        <Link
+          href="/#contact"
           tabIndex={menuOpen ? 0 : -1}
           className="orchid-mobile-enquire"
-          onClick={() => handleNavigation("#contact")}
+          onClick={() => handleNavigation("/#contact")}
         >
           ENQUIRE NOW <ArrowRight size={14} />
-        </a>
+        </Link>
       </nav>
     </header>
   );
-}
-
-// Register and clean up the scroll listener.
-function ReactScrollEffect(setScrolled: Dispatch<SetStateAction<boolean>>) {
-  useEffect(() => {
-    const updateScroll = () => setScrolled(window.scrollY > 30);
-
-    updateScroll();
-    window.addEventListener("scroll", updateScroll, { passive: true });
-
-    return () => window.removeEventListener("scroll", updateScroll);
-  }, [setScrolled]);
 }
