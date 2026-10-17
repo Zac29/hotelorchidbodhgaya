@@ -8,9 +8,6 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  Images,
-  Menu,
-  Phone,
   Send,
   X,
 } from "lucide-react";
@@ -114,7 +111,6 @@ const categories: GalleryCategory[] = ["All Photos", "Rooms", "Interiors"];
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState<GalleryCategory>("All Photos");
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   const filteredItems = galleryItems
     .map((item, originalIndex) => ({ ...item, originalIndex }))
@@ -155,49 +151,6 @@ export default function GalleryPage() {
 
   return (
     <main className="orchid-gallery-page">
-      <header className="og-nav">
-        {/* <div className="og-container og-nav-inner">
-          <Link href="/" className="og-brand" aria-label="Hotel Orchid home">
-            <span className="og-brand-mark"><Images size={22} /></span>
-            <span>
-              <span className="og-brand-name">HOTEL ORCHID</span>
-              <span className="og-brand-sub">BODHGAYA</span>
-            </span>
-          </Link>
-
-          <nav className="og-links" aria-label="Main navigation">
-            <Link href="/">Home</Link>
-            <Link href="/rooms">Rooms</Link>
-            <Link href="/gallery" className="active">Gallery</Link>
-            <Link href="/#about">About Us</Link>
-            <Link href="/#contact">Contact Us</Link>
-          </nav>
-
-          <div className="og-nav-actions">
-            <a className="og-phone" href="tel:+919876543210"><Phone size={14} /> +91 98765 43210</a>
-            <Link className="og-enquire" href="/#contact">ENQUIRE NOW <ArrowRight size={14} /></Link>
-          </div>
-
-          <button
-            type="button"
-            className="og-menu-button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div> */}
-
-        <nav className={`og-mobile-links ${menuOpen ? "open" : ""}`} aria-label="Mobile navigation">
-          <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link href="/rooms" onClick={() => setMenuOpen(false)}>Rooms</Link>
-          <Link href="/gallery" onClick={() => setMenuOpen(false)}>Gallery</Link>
-          <Link href="/#about" onClick={() => setMenuOpen(false)}>About Us</Link>
-          <Link href="/#contact" onClick={() => setMenuOpen(false)}>Contact Us</Link>
-          <Link className="og-mobile-enquire" href="/#contact" onClick={() => setMenuOpen(false)}>Enquire Now <ArrowRight size={15} /></Link>
-        </nav>
-      </header>
 
       <section className="og-intro">
         <div className="og-intro-kicker">HOTEL ORCHID · BODHGAYA</div>

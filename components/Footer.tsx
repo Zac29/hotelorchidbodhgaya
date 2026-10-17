@@ -11,8 +11,8 @@ const navItems = [
   ["Home", "#home"],
   ["Rooms", "#rooms"],
   ["Gallery", "#gallery"],
-  ["About Us", "#about"],
-  ["Contact Us", "#contact"],
+  ["About Us", "/about"],
+  ["Contact Us", "/contact"],
 ] as const;
 
 function Logo() {

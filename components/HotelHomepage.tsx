@@ -951,7 +951,7 @@ export default function HotelHomepage() {
                     <Image
                       src={
                         images[room.image as keyof typeof images] ||
-                        images.deluxe ||
+                        images.bedroom1 ||
                         images.hero
                       }
                       alt={room.name}
@@ -1881,7 +1881,7 @@ export default function HotelHomepage() {
                   images[
                     roomTariffData[roomOpen].image as keyof typeof images
                   ] ||
-                  images.deluxe ||
+                  images.bedroom1 ||
                   images.hero
                 }
                 alt={roomTariffData[roomOpen].name}

@@ -9,8 +9,8 @@ const navItems = [
   { label: "Home", href: "/#home" },
   { label: "Rooms", href: "/rooms" },
   { label: "Gallery", href: "/gallery" },
-  { label: "About Us", href: "/#about" },
-  { label: "Contact Us", href: "/#contact" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 function Logo() {
@@ -32,11 +32,29 @@ function Logo() {
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <path d="M24 23C16 16 17 9 24 3C31 9 32 16 24 23Z" fill="currentColor" fillOpacity=".9" />
-          <path d="M22 26C11 28 6 22 5 15C15 14 22 18 24 25Z" fill="currentColor" fillOpacity=".8" />
-          <path d="M26 26C37 28 42 22 43 15C33 14 26 18 24 25Z" fill="currentColor" fillOpacity=".8" />
-          <path d="M23 29C16 24 12 28 12 34C17 35 22 32 24 28Z" fill="currentColor" />
-          <path d="M25 29C32 24 36 28 36 34C31 35 26 32 24 28Z" fill="currentColor" />
+          <path
+            d="M24 23C16 16 17 9 24 3C31 9 32 16 24 23Z"
+            fill="currentColor"
+            fillOpacity=".9"
+          />
+          <path
+            d="M22 26C11 28 6 22 5 15C15 14 22 18 24 25Z"
+            fill="currentColor"
+            fillOpacity=".8"
+          />
+          <path
+            d="M26 26C37 28 42 22 43 15C33 14 26 18 24 25Z"
+            fill="currentColor"
+            fillOpacity=".8"
+          />
+          <path
+            d="M23 29C16 24 12 28 12 34C17 35 22 32 24 28Z"
+            fill="currentColor"
+          />
+          <path
+            d="M25 29C32 24 36 28 36 34C31 35 26 32 24 28Z"
+            fill="currentColor"
+          />
           <path d="M24 25V40" />
           <path d="M11 39C19 36 29 36 37 39" />
           <path d="M15 42H33" />
@@ -57,20 +75,27 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    function syncNavigation() {
-      const path = window.location.pathname;
+    const syncNavigation = () => {
+      const pathname = window.location.pathname;
       const hash = window.location.hash;
 
-      if (path === "/gallery") {
-        setActiveLink("/gallery");
-      } else if (path === "/rooms") {
+      // Determine the active navigation item.
+      if (pathname === "/rooms") {
         setActiveLink("/rooms");
+      } else if (pathname === "/gallery") {
+        setActiveLink("/gallery");
+      } else if (pathname === "/about") {
+        setActiveLink("/about");
+      } else if (pathname === "/contact") {
+        setActiveLink("/contact");
+      } else if (hash === "#contact") {
+        setActiveLink("/#contact");
       } else {
-        setActiveLink(hash ? `/${hash}` : "/#home");
+        setActiveLink("/#home");
       }
 
       setScrolled(window.scrollY > 30);
-    }
+    };
 
     syncNavigation();
 
@@ -93,11 +118,16 @@ export default function Navbar() {
   }
 
   return (
-    <header className={`orchid-navbar ${scrolled ? "is-scrolled" : ""}`}>
+    <header
+      className={`orchid-navbar ${scrolled ? "is-scrolled" : ""}`}
+    >
       <div className="orchid-navbar-inner">
         <Logo />
 
-        <nav className="orchid-desktop-nav" aria-label="Main navigation">
+        <nav
+          className="orchid-desktop-nav"
+          aria-label="Main navigation"
+        >
           {navItems.map((item) => {
             const active = activeLink === item.href;
 
@@ -106,7 +136,9 @@ export default function Navbar() {
                 key={item.label}
                 href={item.href}
                 onClick={() => handleNavigation(item.href)}
-                className={`orchid-nav-link ${active ? "is-active" : ""}`}
+                className={`orchid-nav-link ${
+                  active ? "is-active" : ""
+                }`}
                 aria-current={active ? "page" : undefined}
               >
                 {item.label}
@@ -116,15 +148,18 @@ export default function Navbar() {
         </nav>
 
         <div className="orchid-navbar-actions">
-          <a className="orchid-phone-link" href="tel:+919876543210">
+          <a
+            className="orchid-phone-link"
+            href="tel:+919876543210"
+          >
             <Phone size={13} strokeWidth={2} />
             <span>+91 98765 43210</span>
           </a>
 
           <Link
             className="orchid-enquire-button"
-            href="/#contact"
-            onClick={() => handleNavigation("/#contact")}
+            href="/contact"
+            onClick={() => handleNavigation("/contact")}
           >
             ENQUIRE NOW <ArrowRight size={12} />
           </Link>
@@ -144,9 +179,12 @@ export default function Navbar() {
 
       <nav
         id="orchid-mobile-navigation"
-        className={`orchid-mobile-nav ${menuOpen ? "is-open" : ""}`}
+        className={`orchid-mobile-nav ${
+          menuOpen ? "is-open" : ""
+        }`}
         aria-label="Mobile navigation"
         aria-hidden={!menuOpen}
+        inert={!menuOpen}
       >
         {navItems.map((item) => {
           const active = activeLink === item.href;
@@ -155,9 +193,10 @@ export default function Navbar() {
             <Link
               key={item.label}
               href={item.href}
-              tabIndex={menuOpen ? 0 : -1}
               onClick={() => handleNavigation(item.href)}
-              className={`orchid-mobile-link ${active ? "is-active" : ""}`}
+              className={`orchid-mobile-link ${
+                active ? "is-active" : ""
+              }`}
               aria-current={active ? "page" : undefined}
             >
               {item.label}
@@ -166,10 +205,9 @@ export default function Navbar() {
         })}
 
         <Link
-          href="/#contact"
-          tabIndex={menuOpen ? 0 : -1}
+          href="/contact"
           className="orchid-mobile-enquire"
-          onClick={() => handleNavigation("/#contact")}
+          onClick={() => handleNavigation("/contact")}
         >
           ENQUIRE NOW <ArrowRight size={14} />
         </Link>

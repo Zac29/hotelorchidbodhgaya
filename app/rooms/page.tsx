@@ -43,7 +43,7 @@ export interface RoomTariffItem {
   description: string;
 }
 
-export const roomTariffData: RoomTariffItem[] = [
+const roomTariffData: RoomTariffItem[] = [
   {
     id: "deluxe-double",
 
@@ -71,7 +71,7 @@ export const roomTariffData: RoomTariffItem[] = [
       "En-suite Bathroom",
     ],
 
-    image: "deluxe" in images ? "deluxe" : "hero",
+    image: "bedroom1",
 
     tag: "Popular Choice",
 
@@ -106,7 +106,7 @@ export const roomTariffData: RoomTariffItem[] = [
       "En-suite Bathroom",
     ],
 
-    image: "suite" in images ? "suite" : "hero",
+    image: "bedroom2",
 
     tag: "Ideal for Families",
 
@@ -141,7 +141,7 @@ export const roomTariffData: RoomTariffItem[] = [
       "En-suite Bathroom",
     ],
 
-    image: "standard" in images ? "standard" : "hero",
+    image: "bedroom3",
 
     tag: "Great Value",
 
@@ -188,7 +188,7 @@ export default function Rooms() {
                 YOUR STAY, BEAUTIFULLY CONSIDERED
               </span>
 
-              <h1>Rooms &amp; Rates</h1>
+              <h1>Rooms &amp; <em>Rates</em></h1>
 
               <p>
                 Find your perfect retreat in Bodhgaya. Thoughtfully appointed
@@ -501,17 +501,17 @@ export default function Rooms() {
 
         <style jsx>{`
           .orchid-rooms {
-            --orchid-navy: #172e49;
+            --orchid-navy: #091a30;
 
             --orchid-gold: #bd873b;
 
-            --orchid-muted: #697487;
+            --orchid-muted: #70757a;
 
-            background: #faf9f6;
+            background: #fbf8f2;
 
             color: var(--orchid-navy);
 
-            padding: 104px 0 76px;
+            padding: 112px 0 82px;
 
             min-height: 100vh;
           }
@@ -521,7 +521,7 @@ export default function Rooms() {
           }
 
           .orchid-rooms-container {
-            width: min(1440px, calc(100% - 72px));
+            width: min(1200px, calc(100% - 64px));
 
             margin: 0 auto;
           }
@@ -571,7 +571,7 @@ export default function Rooms() {
           .rooms-heading h1 {
             margin: 12px 0 10px;
 
-            font-family: Georgia, "Times New Roman", serif;
+            font-family: var(--font-serif), Georgia, "Times New Roman", serif;
 
             font-size: clamp(34px, 4vw, 49px);
 
@@ -582,6 +582,11 @@ export default function Rooms() {
             font-weight: 500;
 
             color: var(--orchid-navy);
+          }
+
+          .rooms-heading h1 em {
+            color: #bd873b;
+            font-weight: 400;
           }
 
           .rooms-heading-copy > p {
@@ -611,7 +616,7 @@ export default function Rooms() {
 
             border: 1px solid #eae5db;
 
-            border-radius: 10px;
+            border-radius: 2px;
 
             color: var(--orchid-gold);
           }
@@ -647,9 +652,9 @@ export default function Rooms() {
 
             margin-bottom: 20px;
 
-            border-top: 1px solid #eae6df;
+            border-top: 1px solid #e6ddcf;
 
-            border-bottom: 1px solid #eae6df;
+            border-bottom: 1px solid #e6ddcf;
 
             color: var(--orchid-muted);
 
@@ -681,7 +686,7 @@ export default function Rooms() {
           .room-card {
             display: grid;
 
-            grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 
             align-items: stretch;
 
@@ -691,11 +696,11 @@ export default function Rooms() {
 
             background: #fff;
 
-            border: 1px solid #e9e5de;
+            border: 1px solid #eee5d6;
 
-            border-radius: 15px;
+            border-radius: 2px;
 
-            box-shadow: 0 5px 20px rgba(23, 46, 73, 0.035);
+            box-shadow: 0 8px 30px rgba(42, 34, 20, 0.045);
 
             transition:
               box-shadow 220ms ease,
@@ -703,7 +708,7 @@ export default function Rooms() {
           }
 
           .room-card:hover {
-            box-shadow: 0 14px 36px rgba(23, 46, 73, 0.09);
+            box-shadow: 0 17px 45px rgba(42, 34, 20, 0.09);
 
             transform: translateY(-2px);
           }
@@ -719,7 +724,7 @@ export default function Rooms() {
           .room-photo {
             position: relative;
 
-            min-height: 365px;
+            min-height: 390px;
 
             overflow: hidden;
 
@@ -762,15 +767,15 @@ export default function Rooms() {
 
             z-index: 1;
 
-            max-width: calc(100% - 40px);
+            max-width: calc(100% - 44px);
 
             padding: 8px 11px;
 
             border: 1px solid rgba(232, 194, 126, 0.5);
 
-            border-radius: 4px;
+            border-radius: 2px;
 
-            background: rgba(23, 46, 73, 0.91);
+            background: rgba(9, 26, 48, 0.94);
 
             color: #f3d29b;
 
@@ -836,7 +841,7 @@ export default function Rooms() {
 
             min-width: 0;
 
-            padding: 29px 30px 24px;
+            padding: 32px 30px 27px;
           }
 
           .room-category {
@@ -856,7 +861,7 @@ export default function Rooms() {
 
             color: var(--orchid-navy);
 
-            font-family: Georgia, "Times New Roman", serif;
+            font-family: var(--font-serif), Georgia, "Times New Roman", serif;
 
             font-size: clamp(22px, 2.1vw, 29px);
 
@@ -898,11 +903,11 @@ export default function Rooms() {
 
             padding: 7px 9px;
 
-            border: 1px solid #eae7e0;
+            border: 1px solid #eee5d6;
 
-            border-radius: 4px;
+            border-radius: 2px;
 
-            background: #fcfbf9;
+            background: #fff;
 
             color: #47566a;
 
@@ -932,11 +937,11 @@ export default function Rooms() {
 
             padding: 18px;
 
-            border: 1px solid #eee2cf;
+            border: 1px solid #eee5d6;
 
-            border-radius: 8px;
+            border-radius: 2px;
 
-            background: #fdfbf7;
+            background: #fbf8f2;
           }
 
           .price-option {
@@ -1029,9 +1034,9 @@ export default function Rooms() {
             gap: 7px;
             margin-top: 10px;
             padding: 6px 10px;
-            background: #f8f6f0;
+            background: #f3ede3;
             border: 1px dashed #dcd4c3;
-            border-radius: 5px;
+            border-radius: 2px;
             font-size: 11px;
             color: var(--orchid-muted);
           }
@@ -1093,9 +1098,9 @@ export default function Rooms() {
 
             padding: 24px 26px;
 
-            border: 1px solid #e9e2d5;
+            border: 1px solid #e6ddcf;
 
-            border-radius: 10px;
+            border-radius: 2px;
 
             background: #fff;
           }
@@ -1113,7 +1118,7 @@ export default function Rooms() {
 
             border-radius: 50%;
 
-            background: #f7efe1;
+            background: #f2e7d4;
 
             color: var(--orchid-gold);
           }
@@ -1123,7 +1128,7 @@ export default function Rooms() {
 
             color: var(--orchid-navy);
 
-            font-family: Georgia, "Times New Roman", serif;
+            font-family: var(--font-serif), Georgia, "Times New Roman", serif;
 
             font-size: 18px;
 
@@ -1228,7 +1233,7 @@ export default function Rooms() {
 
             border-radius: 50%;
 
-            background: rgba(23, 46, 73, 0.88);
+            background: rgba(9, 26, 48, 0.92);
 
             color: #fff;
 
@@ -1252,7 +1257,7 @@ export default function Rooms() {
 
             color: var(--orchid-navy);
 
-            font-family: Georgia, "Times New Roman", serif;
+            font-family: var(--font-serif), Georgia, "Times New Roman", serif;
 
             font-size: 29px;
 
@@ -1358,11 +1363,11 @@ export default function Rooms() {
 
             padding: 15px;
 
-            border: 1px solid #e9e2d5;
+            border: 1px solid #e6ddcf;
 
-            border-radius: 7px;
+            border-radius: 2px;
 
-            background: #fdfbf7;
+            background: #fbf8f2;
           }
 
           .modal-prices > div > span {
@@ -1395,7 +1400,7 @@ export default function Rooms() {
             padding: 10px 14px;
             background: #fbf9f4;
             border: 1px solid #ede3d1;
-            border-radius: 6px;
+            border-radius: 2px;
             font-size: 12px;
             color: var(--orchid-navy);
           }
@@ -1424,7 +1429,7 @@ export default function Rooms() {
 
           @media (max-width: 1050px) {
             .orchid-rooms-container {
-              width: calc(100% - 40px);
+              width: calc(100% - 44px);
             }
 
             .room-photo {
@@ -1456,7 +1461,7 @@ export default function Rooms() {
             }
 
             .orchid-rooms-container {
-              width: calc(100% - 30px);
+              width: calc(100% - 36px);
             }
 
             .rooms-heading {
@@ -1499,7 +1504,7 @@ export default function Rooms() {
 
               flex-direction: column;
 
-              border-radius: 11px;
+              border-radius: 2px;
             }
 
             .room-card-reverse .room-photo,
@@ -1656,7 +1661,7 @@ export default function Rooms() {
 
           @media (max-width: 380px) {
             .orchid-rooms-container {
-              width: calc(100% - 22px);
+              width: calc(100% - 28px);
             }
 
             .room-information {
@@ -1684,6 +1689,84 @@ export default function Rooms() {
             .modal-amenities {
               grid-template-columns: 1fr;
             }
+          }
+
+
+          /* Premium Hotel Orchid button animation */
+          .orchid-rooms .gold-btn,
+          .orchid-rooms .outline-btn,
+          .orchid-rooms button.room-details-button,
+          .orchid-rooms .room-modal-close {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            transition:
+              transform 220ms ease,
+              box-shadow 220ms ease,
+              filter 220ms ease,
+              background-color 220ms ease;
+          }
+
+          .orchid-rooms .gold-btn::before,
+          .orchid-rooms .outline-btn::before,
+          .orchid-rooms button.room-details-button::before {
+            position: absolute;
+            content: "";
+            top: -40%;
+            left: -75%;
+            width: 45%;
+            height: 180%;
+            transform: skewX(-22deg);
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(255, 255, 255, 0.32),
+              transparent
+            );
+            transition: left 520ms ease;
+            pointer-events: none;
+            z-index: -1;
+          }
+
+          .orchid-rooms .gold-btn:hover,
+          .orchid-rooms .room-details-button:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.05);
+            box-shadow: 0 11px 25px rgba(115, 71, 23, 0.24);
+          }
+
+          .orchid-rooms .gold-btn:hover::before,
+          .orchid-rooms .outline-btn:hover::before,
+          .orchid-rooms button.room-details-button:hover::before {
+            left: 135%;
+          }
+
+          .orchid-rooms .outline-btn {
+            border-color: #bd873b;
+            background: #fff;
+            color: #8a5b21;
+          }
+
+          .orchid-rooms .outline-btn:hover {
+            transform: translateY(-2px);
+            background: #fbf3e7;
+            box-shadow: 0 8px 20px rgba(42, 34, 20, 0.09);
+          }
+
+          .orchid-rooms .room-modal-close:hover {
+            transform: rotate(90deg);
+            filter: brightness(1.12);
+          }
+
+          .orchid-rooms .gold-btn:active,
+          .orchid-rooms .outline-btn:active {
+            transform: translateY(0) scale(0.985);
+          }
+
+          .orchid-rooms .gold-btn:focus-visible,
+          .orchid-rooms .outline-btn:focus-visible {
+            outline: 3px solid rgba(189, 135, 59, 0.45);
+            outline-offset: 3px;
           }
 
           @media (prefers-reduced-motion: reduce) {
