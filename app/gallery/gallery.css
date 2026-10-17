@@ -1,0 +1,955 @@
+/* Gallery page styles — scoped to avoid changing the rest of the website */
+
+.orchid-gallery-page {
+
+  --og-navy: #091a30;
+
+  --og-gold: #a96e24;
+
+  --og-gold-light: #edbd69;
+
+  --og-cream: #fbf6ed;
+
+  --og-muted: #70757b;
+
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  background: var(--og-cream);
+
+  color: #333;
+
+  font-family: var(--font-sans), Arial, sans-serif;
+
+}
+
+.orchid-gallery-page * { box-sizing: border-box; }
+
+.orchid-gallery-page img { display: block; max-width: 100%; }
+
+.orchid-gallery-page a { color: inherit; text-decoration: none; }
+
+.orchid-gallery-page button { font: inherit; cursor: pointer; }
+
+.orchid-gallery-page .og-container { width: min(1240px, calc(100% - 48px)); margin-inline: auto; }
+
+.orchid-gallery-page .og-nav { position: relative; z-index: 30; background: #091a30; color: white; }
+
+.orchid-gallery-page .og-nav-inner { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+
+.orchid-gallery-page .og-brand { display: flex; align-items: center; gap: 11px; flex-shrink: 0; }
+
+.orchid-gallery-page .og-brand-mark { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid rgba(232,201,150,.7); color: var(--og-gold-light); }
+
+.orchid-gallery-page .og-brand-name { display: block; font: 700 17px/1 Georgia,serif; letter-spacing: .1em; }
+
+.orchid-gallery-page .og-brand-sub { display: block; margin-top: 5px; color: var(--og-gold-light); font-size: 8px; font-weight: 800; letter-spacing: .4em; }
+
+.orchid-gallery-page .og-links { display: flex; align-items: center; gap: clamp(14px,2vw,28px); }
+
+.orchid-gallery-page .og-links a { position: relative; padding: 10px 0; color: rgba(255,255,255,.88); font-size: 11px; font-weight: 700; white-space: nowrap; }
+
+.orchid-gallery-page .og-links a:hover,.orchid-gallery-page .og-links a.active { color: var(--og-gold-light); }
+
+.orchid-gallery-page .og-links a.active:after { position: absolute; right: 0; bottom: 2px; left: 0; height: 2px; background: var(--og-gold-light); content: ""; }
+
+.orchid-gallery-page .og-nav-actions { display: flex; align-items: center; gap: 14px; }
+
+.orchid-gallery-page .og-phone,.orchid-gallery-page .og-footer-phone { display: inline-flex; align-items: center; gap: 7px; color: inherit; font-size: 11px; white-space: nowrap; }
+
+.orchid-gallery-page .og-enquire { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 42px; padding: 0 17px; background: var(--og-gold); color: white; font-size: 10px; font-weight: 800; letter-spacing: .04em; white-space: nowrap; transition: background .2s,transform .2s; }
+
+.orchid-gallery-page .og-enquire:hover { background: #946b32; transform: translateY(-1px); }
+
+.orchid-gallery-page .og-menu-button { display: none; width: 42px; height: 42px; place-items: center; border: 1px solid rgba(255,255,255,.35); background: transparent; color: white; }
+
+.orchid-gallery-page .og-mobile-links { display: none; }
+
+.orchid-gallery-page .og-intro { padding: 55px 24px 10px; text-align: center; background: var(--og-cream); }
+
+.orchid-gallery-page .og-intro-kicker { color: var(--og-gold); font-size: 9px; font-weight: 800; letter-spacing: .36em; }
+
+.orchid-gallery-page .og-intro h1 { margin: 16px 0 10px; color: #172c43; font: 400 clamp(36px,4.5vw,56px)/1.12 Georgia,serif; letter-spacing: -.025em; }
+
+.orchid-gallery-page .og-intro h1 em,.orchid-gallery-page .og-gallery-topline h2 em { color: #9f7847; font-weight: 400; }
+
+.orchid-gallery-page .og-intro p { margin: 0 auto; color: var(--og-muted); font-size: 13px; line-height: 1.7; }
+
+.orchid-gallery-page .og-intro-rule { display: block; width: 42px; height: 1px; margin: 24px auto 0; background: var(--og-gold); }
+
+.orchid-gallery-page .og-gallery-section { padding: 28px 0 75px; }
+
+.orchid-gallery-page .og-gallery-topline { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 25px; }
+
+.orchid-gallery-page .og-eyebrow { margin: 0; color: var(--og-gold); font-size: 9px; font-weight: 800; letter-spacing: .25em; }
+
+.orchid-gallery-page .og-gallery-topline h2 { margin: 9px 0 0; color: var(--og-navy); font: 400 clamp(28px,3vw,38px)/1.15 Georgia,serif; }
+
+.orchid-gallery-page .og-filters { display: flex; flex-wrap: wrap; gap: 7px; }
+
+.orchid-gallery-page .og-filter { padding: 10px 14px; border: 1px solid #e4d8c8; background: transparent; color: #625b53; font-size: 11px; transition: .2s; }
+
+.orchid-gallery-page .og-filter.active { border-color: var(--og-navy); background: var(--og-navy); color: white; }
+
+.orchid-gallery-page .og-filter:hover:not(.active) { border-color: var(--og-gold); color: var(--og-gold); }
+
+
+
+/* Overlapping editorial collage inspired by the reference screenshot */
+
+.orchid-gallery-page .og-collage { position: relative; width: min(100%, 1000px); height: 555px; margin: 0 auto; }
+
+.orchid-gallery-page .og-collage-card { position: absolute; overflow: visible; background: #e9dfd0; box-shadow: 0 5px 18px rgba(20,25,32,.14); }
+
+.orchid-gallery-page .og-photo-button { position: relative; display: block; width: 100%; height: 100%; overflow: hidden; padding: 0; border: 0; background: #e9dfd0; text-align: left; }
+
+.orchid-gallery-page .og-photo-button img { object-fit: cover; filter: grayscale(100%); transition: filter .45s ease,transform .6s ease; }
+
+.orchid-gallery-page .og-collage-card:hover .og-photo-button img { filter: grayscale(0%); transform: scale(1.045); }
+
+.orchid-gallery-page .og-photo-shade { position: absolute; inset: 0; background: linear-gradient(0deg,rgba(9,22,37,.7),transparent 60%); opacity: 0; transition: opacity .25s; }
+
+.orchid-gallery-page .og-collage-card:hover .og-photo-shade { opacity: 1; }
+
+.orchid-gallery-page .og-photo-title { position: absolute; right: 16px; bottom: 16px; left: 16px; color: white; font: 400 19px Georgia,serif; opacity: 0; transform: translateY(5px); transition: .25s; }
+
+.orchid-gallery-page .og-collage-card:hover .og-photo-title { opacity: 1; transform: translateY(0); }
+
+.orchid-gallery-page .og-photo-open { position: absolute; right: 12px; top: 12px; display: grid; width: 31px; height: 31px; place-items: center; background: rgba(252,248,243,.93); color: var(--og-navy); opacity: 0; transition: .2s; }
+
+.orchid-gallery-page .og-collage-card:hover .og-photo-open { opacity: 1; }
+
+.orchid-gallery-page .og-photo-enquire { position: absolute; z-index: 4; top: 8px; right: 8px; display: grid; width: 32px; height: 32px; place-items: center; background: rgba(252,248,243,.96); color: var(--og-navy); opacity: 0; transition: .2s; }
+
+.orchid-gallery-page .og-collage-card:hover .og-photo-enquire,.orchid-gallery-page .og-photo-enquire:focus-visible { opacity: 1; }
+
+.orchid-gallery-page .tile-one { z-index: 2; left: 9%; top: 37px; width: 35%; height: 210px; }
+
+.orchid-gallery-page .tile-two { z-index: 1; left: 0; top: 0; width: 18%; height: 175px; }
+
+.orchid-gallery-page .tile-three { z-index: 3; left: 44%; top: 115px; width: 25%; height: 245px; }
+
+.orchid-gallery-page .tile-four { z-index: 2; left: 69%; top: 55px; width: 27%; height: 180px; }
+
+.orchid-gallery-page .tile-five { z-index: 4; left: 43%; top: 355px; width: 25%; height: 160px; }
+
+.orchid-gallery-page .tile-six { z-index: 3; left: 16%; top: 320px; width: 28%; height: 155px; }
+
+.orchid-gallery-page .tile-seven { z-index: 5; left: 76%; top: 220px; width: 20%; height: 230px; }
+
+.orchid-gallery-page .tile-eight { z-index: 2; left: 0; top: 360px; width: 16%; height: 170px; }
+
+.orchid-gallery-page .og-filtered-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; }
+
+.orchid-gallery-page .og-filtered-card { min-width: 0; background: #fff; border: 1px solid #e8dfd3; }
+
+.orchid-gallery-page .og-filtered-photo { position: relative; display: block; width: 100%; height: 260px; overflow: hidden; border: 0; padding: 0; background: #e9dfd0; }
+
+.orchid-gallery-page .og-filtered-photo img { object-fit: cover; filter: grayscale(100%); transition: filter .4s,transform .5s; }
+
+.orchid-gallery-page .og-filtered-card:hover .og-filtered-photo img { filter: grayscale(0); transform: scale(1.04); }
+
+.orchid-gallery-page .og-filtered-tag { position: absolute; top: 13px; left: 13px; padding: 8px 10px; background: rgba(20,38,60,.85); color: white; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+
+.orchid-gallery-page .og-filtered-copy { padding: 18px; }
+
+.orchid-gallery-page .og-filtered-copy h3 { margin: 0; color: var(--og-navy); font: 400 22px Georgia,serif; }
+
+.orchid-gallery-page .og-filtered-copy p { margin: 9px 0 15px; color: var(--og-muted); font-size: 12px; line-height: 1.7; }
+
+.orchid-gallery-page .og-filtered-copy a { display: inline-flex; align-items: center; gap: 8px; color: #946b32; font-size: 11px; font-weight: 700; }
+
+.orchid-gallery-page .og-bottom-cta { padding: 0 0 75px; }
+
+.orchid-gallery-page .og-bottom-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 34px 40px; background: var(--og-navy); color: white; }
+
+.orchid-gallery-page .og-bottom-cta h2 { margin: 10px 0; font: 400 clamp(26px,3vw,36px)/1.2 Georgia,serif; }
+
+.orchid-gallery-page .og-bottom-cta p:not(.og-eyebrow) { max-width: 600px; margin: 0; color: rgba(255,255,255,.7); font-size: 12px; line-height: 1.7; }
+
+.orchid-gallery-page .og-cta-button { flex-shrink: 0; }
+
+.orchid-gallery-page .og-footer { border-top: 1px solid #e8ddce; background: #f6efe5; }
+
+.orchid-gallery-page .og-footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 42px; padding: 42px 0; }
+
+.orchid-gallery-page .og-footer-brand .og-brand-name { color: var(--og-navy); }
+
+.orchid-gallery-page .og-footer p { max-width: 360px; margin: 15px 0 0; color: var(--og-muted); font-size: 12px; line-height: 1.8; }
+
+.orchid-gallery-page .og-footer h3 { margin: 0 0 15px; color: var(--og-navy); font: 400 22px Georgia,serif; }
+
+.orchid-gallery-page .og-footer-links { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; color: #625c55; font-size: 12px; }
+
+.orchid-gallery-page .og-footer-links a:hover,.orchid-gallery-page .og-footer-contact:hover { color: var(--og-gold); }
+
+.orchid-gallery-page .og-footer-phone { color: #625c55; font-size: 12px; }
+
+.orchid-gallery-page .og-footer-contact { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; color: var(--og-navy); font-size: 12px; }
+
+.orchid-gallery-page .og-footer-bottom { padding: 15px 20px; border-top: 1px solid #e8ddce; color: var(--og-muted); font-size: 10px; text-align: center; }
+
+.orchid-gallery-page .og-lightbox { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 25px; background: rgba(8,13,20,.96); }
+
+.orchid-gallery-page .og-lightbox-inner { width: min(1050px,100%); }
+
+.orchid-gallery-page .og-lightbox-image { position: relative; height: min(68vh,720px); min-height: 240px; }
+
+.orchid-gallery-page .og-lightbox-image img { object-fit: contain; }
+
+.orchid-gallery-page .og-lightbox-caption { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-top: 18px; color: white; }
+
+.orchid-gallery-page .og-lightbox-caption p { margin: 0; color: rgba(255,255,255,.65); font-size: 11px; letter-spacing: .1em; }
+
+.orchid-gallery-page .og-lightbox-caption h3 { margin: 8px 0; font: 400 27px Georgia,serif; }
+
+.orchid-gallery-page .og-lightbox-control { position: absolute; z-index: 2; display: grid; width: 44px; height: 44px; place-items: center; border: 1px solid rgba(255,255,255,.35); background: rgba(0,0,0,.25); color: white; }
+
+.orchid-gallery-page .og-lightbox-control:hover { background: white; color: var(--og-navy); }
+
+.orchid-gallery-page .og-lightbox-close { top: 20px; right: 20px; }
+
+.orchid-gallery-page .og-lightbox-prev { top: 50%; left: 20px; transform: translateY(-50%); }
+
+.orchid-gallery-page .og-lightbox-next { top: 50%; right: 20px; transform: translateY(-50%); }
+
+@media (max-width: 1100px) {
+
+  .orchid-gallery-page .og-nav-actions { display: none; }
+
+  .orchid-gallery-page .og-links { gap: 18px; }
+
+  .orchid-gallery-page .og-collage { height: 490px; }
+
+  .orchid-gallery-page .tile-one { height: 185px; }
+
+  .orchid-gallery-page .tile-two { height: 155px; }
+
+  .orchid-gallery-page .tile-three { height: 215px; }
+
+  .orchid-gallery-page .tile-four { height: 160px; }
+
+  .orchid-gallery-page .tile-five { top: 315px; height: 140px; }
+
+  .orchid-gallery-page .tile-six { top: 290px; height: 135px; }
+
+  .orchid-gallery-page .tile-seven { height: 200px; }
+
+  .orchid-gallery-page .tile-eight { top: 325px; height: 150px; }
+
+}
+
+@media (max-width: 820px) {
+
+  .orchid-gallery-page .og-links { display: none; }
+
+  .orchid-gallery-page .og-menu-button { display: grid; }
+
+  .orchid-gallery-page .og-mobile-links.open { display: grid; padding: 8px 24px 18px; border-top: 1px solid rgba(255,255,255,.14); background: #091a30; }
+
+  .orchid-gallery-page .og-mobile-links a { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.1); color: white; font-size: 13px; }
+
+  .orchid-gallery-page .og-mobile-links .og-mobile-enquire { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; padding: 13px 16px; border: 0; background: var(--og-gold); }
+
+  .orchid-gallery-page .og-gallery-topline { align-items: flex-start; flex-direction: column; }
+
+  .orchid-gallery-page .og-collage { height: 430px; }
+
+  .orchid-gallery-page .tile-one { left: 10%; top: 34px; width: 39%; height: 170px; }
+
+  .orchid-gallery-page .tile-two { width: 23%; height: 140px; }
+
+  .orchid-gallery-page .tile-three { left: 45%; top: 110px; width: 30%; height: 190px; }
+
+  .orchid-gallery-page .tile-four { left: 72%; top: 40px; width: 26%; height: 145px; }
+
+  .orchid-gallery-page .tile-five { left: 43%; top: 300px; width: 31%; height: 120px; }
+
+  .orchid-gallery-page .tile-six { left: 15%; top: 265px; width: 30%; height: 130px; }
+
+  .orchid-gallery-page .tile-seven { left: 76%; top: 205px; width: 22%; height: 175px; }
+
+  .orchid-gallery-page .tile-eight { top: 290px; width: 16%; height: 130px; }
+
+  .orchid-gallery-page .og-filtered-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+
+  .orchid-gallery-page .og-footer-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+
+  .orchid-gallery-page .og-footer-grid > :first-child { grid-column: 1/-1; }
+
+}
+
+@media (max-width: 560px) {
+
+  .orchid-gallery-page .og-container { width: calc(100% - 32px); }
+
+  .orchid-gallery-page .og-nav-inner { min-height: 70px; }
+
+  .orchid-gallery-page .og-brand-mark { width: 36px; height: 36px; }
+
+  .orchid-gallery-page .og-brand-name { font-size: 14px; }
+
+  .orchid-gallery-page .og-intro { padding-top: 43px; }
+
+  .orchid-gallery-page .og-intro h1 { font-size: 39px; }
+
+  .orchid-gallery-page .og-intro p { max-width: 330px; font-size: 12px; }
+
+  .orchid-gallery-page .og-gallery-section { padding-top: 26px; }
+
+  .orchid-gallery-page .og-filters { gap: 6px; }
+
+  .orchid-gallery-page .og-filter { padding: 9px 11px; font-size: 10px; }
+
+  .orchid-gallery-page .og-collage { display: grid; height: auto; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+
+  .orchid-gallery-page .og-collage-card,.orchid-gallery-page .og-collage-card.tile-one,.orchid-gallery-page .og-collage-card.tile-two,.orchid-gallery-page .og-collage-card.tile-three,.orchid-gallery-page .og-collage-card.tile-four,.orchid-gallery-page .og-collage-card.tile-five,.orchid-gallery-page .og-collage-card.tile-six,.orchid-gallery-page .og-collage-card.tile-seven,.orchid-gallery-page .og-collage-card.tile-eight { position: relative; inset: auto; width: auto; height: 190px; }
+
+  .orchid-gallery-page .og-collage-card:nth-child(3n+1) { height: 230px; }
+
+  .orchid-gallery-page .og-photo-title { left: 10px; right: 10px; bottom: 10px; font-size: 15px; opacity: 1; transform: none; }
+
+  .orchid-gallery-page .og-photo-shade { opacity: .7; }
+
+  .orchid-gallery-page .og-photo-open { display: none; }
+
+  .orchid-gallery-page .og-photo-enquire { opacity: 1; width: 29px; height: 29px; }
+
+  .orchid-gallery-page .og-filtered-grid { grid-template-columns: 1fr; }
+
+  .orchid-gallery-page .og-filtered-photo { height: 250px; }
+
+  .orchid-gallery-page .og-bottom-cta { padding-bottom: 48px; }
+
+  .orchid-gallery-page .og-bottom-cta-inner { align-items: flex-start; flex-direction: column; padding: 26px 22px; }
+
+  .orchid-gallery-page .og-cta-button { width: 100%; }
+
+  .orchid-gallery-page .og-footer-grid { grid-template-columns: 1fr; gap: 28px; padding: 32px 0; }
+
+  .orchid-gallery-page .og-footer-grid > :first-child { grid-column: auto; }
+
+  .orchid-gallery-page .og-lightbox { padding: 14px; }
+
+  .orchid-gallery-page .og-lightbox-image { height: 55vh; }
+
+  .orchid-gallery-page .og-lightbox-prev { left: 6px; }
+
+  .orchid-gallery-page .og-lightbox-next { right: 6px; }
+
+  .orchid-gallery-page .og-lightbox-close { top: 8px; right: 8px; }
+
+  .orchid-gallery-page .og-lightbox-caption { align-items: flex-start; flex-direction: column; }
+
+}
+
+
+/* ================================================================
+   GLOBAL ORCHID DESIGN SYSTEM OVERRIDES
+   Scoped to the existing gallery classes; no JSX/class names changed.
+   ================================================================ */
+.orchid-gallery-page {
+  --og-navy: #091a30;
+  --og-gold: #a96e24;
+  --og-gold-light: #edbd69;
+  --og-cream: #fbf6ed;
+  --og-muted: #70757b;
+  color: #20252c;
+  background: linear-gradient(180deg, #fbf8f2 0%, #fbf6ed 100%);
+  font-family: var(--font-sans), Arial, sans-serif;
+}
+
+.orchid-gallery-page .og-nav {
+  background: linear-gradient(110deg, #04101d 0%, #091a30 58%, #112b49 100%);
+}
+
+.orchid-gallery-page .og-brand-mark {
+  border-radius: 9px;
+  border-color: rgba(237, 189, 105, .5);
+  background: rgba(237, 189, 105, .07);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.orchid-gallery-page .og-intro {
+  background: linear-gradient(180deg, #fbf8f2 0%, #fbf6ed 100%);
+}
+
+.orchid-gallery-page .og-intro-kicker,
+.orchid-gallery-page .og-eyebrow {
+  color: var(--og-gold);
+}
+
+.orchid-gallery-page .og-intro h1,
+.orchid-gallery-page .og-gallery-topline h2,
+.orchid-gallery-page .og-filtered-copy h3,
+.orchid-gallery-page .og-bottom-cta h2,
+.orchid-gallery-page .og-lightbox-caption h3 {
+  font-family: var(--font-serif), Georgia, serif;
+  letter-spacing: -.025em;
+}
+
+/* Main enquiry buttons: same gradient, radius, typography and animation as globals.css */
+.orchid-gallery-page .og-enquire {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 19px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #d9a24e, #a96b25);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(115, 71, 23, .22), inset 0 1px 0 rgba(255,255,255,.24);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .01em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.orchid-gallery-page .og-enquire:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #d9a24e, #a96b25);
+  box-shadow: 0 10px 22px rgba(112, 65, 15, .25);
+}
+
+/* Photo enquiry is the same gold button, adapted to an icon-only square. */
+.orchid-gallery-page .og-photo-enquire {
+  position: absolute;
+  z-index: 4;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  min-height: 34px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.45);
+  border-radius: 7px;
+  background: linear-gradient(135deg, #d9a24e, #a96b25);
+  color: #fff;
+  opacity: 0;
+  box-shadow: 0 5px 14px rgba(0,0,0,.16);
+  transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease, background .2s ease;
+}
+
+.orchid-gallery-page .og-collage-card:hover .og-photo-enquire,
+.orchid-gallery-page .og-photo-enquire:focus-visible {
+  opacity: 1;
+}
+
+.orchid-gallery-page .og-photo-enquire:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #d9a24e, #a96b25);
+  box-shadow: 0 10px 22px rgba(112, 65, 15, .25);
+}
+
+/* Filtered-card enquiry link keeps its original class and becomes a CTA. */
+.orchid-gallery-page .og-filtered-copy a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #d9a24e, #a96b25);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(115, 71, 23, .22);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .01em;
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.orchid-gallery-page .og-filtered-copy a:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #d9a24e, #a96b25);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(112, 65, 15, .25);
+}
+
+.orchid-gallery-page .og-mobile-links .og-mobile-enquire {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 19px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #d9a24e, #a96b25);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(115, 71, 23, .22), inset 0 1px 0 rgba(255,255,255,.24);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .01em;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.orchid-gallery-page .og-cta-button { flex-shrink: 0; }
+.orchid-gallery-page .og-footer-contact { display: inline-flex; width: fit-content; margin-top: 16px; }
+
+/* Global site surface, borders, shadows and hover rhythm. */
+.orchid-gallery-page .og-collage-card,
+.orchid-gallery-page .og-filtered-card {
+  border: 1px solid rgba(222, 211, 193, .78);
+  border-radius: 10px;
+  box-shadow: 0 7px 22px rgba(45, 34, 19, .08), 0 1px 2px rgba(45, 34, 19, .035);
+}
+
+.orchid-gallery-page .og-photo-button,
+.orchid-gallery-page .og-filtered-photo {
+  border-radius: inherit;
+}
+
+.orchid-gallery-page .og-filtered-card {
+  overflow: hidden;
+  background: linear-gradient(145deg, #fffefa, #fff 70%, #fbf4e9);
+  transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+}
+
+.orchid-gallery-page .og-filtered-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(188, 137, 67, .42);
+  box-shadow: 0 15px 32px rgba(45, 34, 19, .11);
+}
+
+.orchid-gallery-page .og-filter {
+  border-radius: 7px;
+  transition: color .2s ease, border-color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.orchid-gallery-page .og-filter.active {
+  border-color: var(--og-navy);
+  background: var(--og-navy);
+}
+
+.orchid-gallery-page .og-bottom-cta-inner {
+  border: 1px solid rgba(232, 219, 198, .15);
+  border-radius: 12px;
+  background: radial-gradient(ellipse at 80% 0%, #112c4a, #091a30 52%, #04101d);
+  box-shadow: 0 15px 35px rgba(4, 16, 29, .12);
+}
+
+.orchid-gallery-page .og-lightbox-control {
+  border-radius: 8px;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+@media (max-width: 560px) {
+  .orchid-gallery-page .og-photo-enquire {
+    width: 32px;
+    height: 32px;
+    min-height: 32px;
+    opacity: 1;
+  }
+
+  .orchid-gallery-page .og-enquire { min-height: 42px; }
+  .orchid-gallery-page .og-cta-button { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orchid-gallery-page .og-enquire,
+  .orchid-gallery-page .og-photo-enquire,
+  .orchid-gallery-page .og-filtered-copy a,
+  .orchid-gallery-page .og-filter,
+  .orchid-gallery-page .og-filtered-card,
+  .orchid-gallery-page .og-lightbox-control {
+    transition: none;
+  }
+
+  .orchid-gallery-page .og-enquire:hover,
+  .orchid-gallery-page .og-photo-enquire:hover,
+  .orchid-gallery-page .og-filtered-copy a:hover,
+  .orchid-gallery-page .og-filtered-card:hover {
+    transform: none;
+  }
+}
+
+
+/* =====================================================
+   HOTEL ORCHID — GLOBAL VISUAL SYSTEM OVERRIDES
+   Existing gallery class names and IDs are preserved.
+===================================================== */
+
+.orchid-gallery-page {
+  --og-navy: #07162c;
+  --og-gold: #a96e25;
+  --og-gold-light: #edbd69;
+  --og-cream: #fbf6ed;
+  --og-muted: #70757b;
+  color: #20252c;
+  background: #fbf6ed;
+  font-family: var(--font-sans), Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.orchid-gallery-page .og-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  margin-bottom: -78px;
+  background: rgba(10, 26, 48, .16);
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  transition: background 220ms ease, box-shadow 220ms ease;
+}
+
+.orchid-gallery-page .og-nav:hover,
+.orchid-gallery-page .og-nav:focus-within {
+  background: rgba(7, 22, 44, .72);
+  box-shadow: 0 5px 22px rgba(0, 0, 0, .12);
+}
+
+.orchid-gallery-page .og-nav-inner {
+  width: min(1380px, calc(100% - 64px));
+  min-height: 78px;
+  gap: 24px;
+}
+
+.orchid-gallery-page .og-brand-mark {
+  border-color: rgba(237, 189, 105, .48);
+  color: var(--og-gold-light);
+  border-radius: 8px;
+}
+
+.orchid-gallery-page .og-brand-name {
+  font-family: var(--font-serif), Georgia, serif;
+  letter-spacing: .075em;
+}
+
+.orchid-gallery-page .og-brand-sub {
+  color: var(--og-gold-light);
+}
+
+.orchid-gallery-page .og-links a {
+  transition: color 180ms ease;
+}
+
+.orchid-gallery-page .og-links a.active:after {
+  background: var(--og-gold-light);
+  border-radius: 2px;
+}
+
+/* Shared gold button appearance from globals.css, applied without
+   requiring any JSX class-name changes. */
+.orchid-gallery-page .og-enquire,
+.orchid-gallery-page .og-filtered-copy a,
+.orchid-gallery-page .og-mobile-links .og-mobile-enquire,
+.orchid-gallery-page .og-footer-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #d9a24e, #a96b25);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(115, 71, 23, .22), inset 0 1px 0 rgba(255, 255, 255, .24);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .01em;
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.orchid-gallery-page .og-enquire {
+  min-height: 42px;
+  padding: 0 19px;
+  white-space: nowrap;
+}
+
+.orchid-gallery-page .og-enquire:hover,
+.orchid-gallery-page .og-filtered-copy a:hover,
+.orchid-gallery-page .og-mobile-links .og-mobile-enquire:hover,
+.orchid-gallery-page .og-footer-contact:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #e4b766, #b7792e);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(112, 65, 15, .25);
+}
+
+/* Compact photo enquiry icon button */
+.orchid-gallery-page .og-photo-enquire {
+  position: absolute;
+  z-index: 4;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  min-height: 34px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, .45);
+  border-radius: 7px;
+  background: linear-gradient(135deg, #d9a24e, #a96b25);
+  color: #fff;
+  opacity: 0;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, .16);
+  transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease, background .2s ease;
+}
+
+.orchid-gallery-page .og-collage-card:hover .og-photo-enquire,
+.orchid-gallery-page .og-photo-enquire:focus-visible {
+  opacity: 1;
+}
+
+.orchid-gallery-page .og-photo-enquire:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #e4b766, #b7792e);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(112, 65, 15, .25);
+}
+
+/* Enquiry link in filtered cards */
+.orchid-gallery-page .og-filtered-copy a {
+  min-height: 42px;
+  padding: 0 16px;
+  font-size: 11px;
+}
+
+.orchid-gallery-page .og-filtered-copy a:hover {
+  color: #fff;
+}
+
+.orchid-gallery-page .og-mobile-links .og-mobile-enquire {
+  align-self: flex-start;
+  min-height: 40px;
+  margin-top: 12px;
+  padding: 0 16px;
+  border-bottom: 1px solid transparent;
+  color: #fff;
+}
+
+.orchid-gallery-page .og-footer-contact {
+  width: fit-content;
+  margin-top: 16px;
+  padding: 0 15px;
+  min-height: 38px;
+}
+
+/* Filter controls use the same rounded, refined design language. */
+.orchid-gallery-page .og-filter {
+  border-radius: 7px;
+  transition: color .2s ease, border-color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.orchid-gallery-page .og-filter.active {
+  border-color: var(--og-navy);
+  background: var(--og-navy);
+  box-shadow: 0 5px 14px rgba(7, 22, 44, .12);
+}
+
+.orchid-gallery-page .og-filter:hover:not(.active) {
+  transform: translateY(-1px);
+  border-color: var(--og-gold);
+  background: rgba(217, 162, 78, .08);
+  color: var(--og-gold);
+}
+
+/* Refined global surface styling */
+.orchid-gallery-page .og-intro,
+.orchid-gallery-page .og-gallery-section {
+  background: linear-gradient(180deg, #fbf8f2, #f8f1e5);
+}
+
+.orchid-gallery-page .og-intro h1,
+.orchid-gallery-page .og-gallery-topline h2,
+.orchid-gallery-page .og-filtered-copy h3 {
+  color: var(--og-navy);
+}
+
+.orchid-gallery-page .og-intro h1 em,
+.orchid-gallery-page .og-gallery-topline h2 em {
+  color: #a96e24;
+}
+
+.orchid-gallery-page .og-eyebrow,
+.orchid-gallery-page .og-intro-kicker {
+  color: var(--og-gold);
+}
+
+.orchid-gallery-page .og-collage-card,
+.orchid-gallery-page .og-filtered-card {
+  border: 1px solid rgba(222, 211, 193, .78);
+  border-radius: 10px;
+  box-shadow: 0 7px 22px rgba(45, 34, 19, .08), 0 1px 2px rgba(45, 34, 19, .035);
+}
+
+.orchid-gallery-page .og-photo-button,
+.orchid-gallery-page .og-filtered-photo {
+  border-radius: inherit;
+}
+
+.orchid-gallery-page .og-filtered-card {
+  overflow: hidden;
+  background: linear-gradient(145deg, #fffefa, #fff 70%, #fbf4e9);
+  transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+}
+
+.orchid-gallery-page .og-filtered-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(188, 137, 67, .42);
+  box-shadow: 0 15px 32px rgba(45, 34, 19, .11);
+}
+
+.orchid-gallery-page .og-bottom-cta-inner {
+  border: 1px solid rgba(232, 219, 198, .15);
+  border-radius: 12px;
+  background: radial-gradient(ellipse at 80% 0%, #112c4a, #07162c 52%, #04101d);
+  box-shadow: 0 15px 35px rgba(4, 16, 29, .12);
+}
+
+.orchid-gallery-page .og-lightbox-control {
+  border-radius: 8px;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+@media (min-width: 761px) and (max-width: 1150px) {
+  .orchid-gallery-page .og-nav-inner {
+    width: calc(100% - 36px);
+    gap: 14px;
+  }
+
+  .orchid-gallery-page .og-brand {
+    gap: 8px;
+  }
+
+  .orchid-gallery-page .og-brand-mark {
+    width: 36px;
+    height: 36px;
+  }
+
+  .orchid-gallery-page .og-brand-name { font-size: 13px; }
+  .orchid-gallery-page .og-brand-sub { font-size: 7px; letter-spacing: .33em; }
+  .orchid-gallery-page .og-links { gap: clamp(12px, 1.6vw, 19px); }
+  .orchid-gallery-page .og-links a { font-size: 10px; }
+  .orchid-gallery-page .og-nav-actions { gap: 9px; }
+  .orchid-gallery-page .og-phone { font-size: 9px; }
+  .orchid-gallery-page .og-enquire { min-height: 34px; padding-inline: 10px; font-size: 9px; }
+}
+
+@media (max-width: 820px) {
+  .orchid-gallery-page .og-mobile-links.open {
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    border-bottom: 1px solid rgba(237, 189, 105, .2);
+    background: rgba(4, 16, 31, .97);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, .2);
+  }
+
+  .orchid-gallery-page .og-mobile-links a:not(.og-mobile-enquire) {
+    min-height: 44px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    transition: color .18s ease;
+  }
+
+  .orchid-gallery-page .og-mobile-links a:not(.og-mobile-enquire):hover {
+    color: var(--og-gold-light);
+  }
+}
+
+@media (max-width: 560px) {
+  .orchid-gallery-page .og-nav {
+    margin-bottom: -68px;
+  }
+
+  .orchid-gallery-page .og-nav-inner {
+    width: calc(100% - 32px);
+    min-height: 68px;
+  }
+
+  .orchid-gallery-page .og-photo-enquire {
+    width: 32px;
+    height: 32px;
+    min-height: 32px;
+    opacity: 1;
+  }
+
+  .orchid-gallery-page .og-enquire { min-height: 42px; }
+  .orchid-gallery-page .og-cta-button { width: 100%; }
+  .orchid-gallery-page .og-bottom-cta-inner { padding: 26px 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orchid-gallery-page .og-enquire,
+  .orchid-gallery-page .og-photo-enquire,
+  .orchid-gallery-page .og-filtered-copy a,
+  .orchid-gallery-page .og-filter,
+  .orchid-gallery-page .og-filtered-card,
+  .orchid-gallery-page .og-lightbox-control,
+  .orchid-gallery-page .og-nav {
+    transition: none !important;
+  }
+
+  .orchid-gallery-page .og-enquire:hover,
+  .orchid-gallery-page .og-photo-enquire:hover,
+  .orchid-gallery-page .og-filtered-copy a:hover,
+  .orchid-gallery-page .og-filtered-card:hover {
+    transform: none;
+  }
+}
+
+
+/* ALIGNMENT + SPACING FIX: keep content comfortably below the sticky navbar. */
+.orchid-gallery-page .og-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  margin-bottom: 0 !important;
+  background: rgba(7, 22, 44, 0.92);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+.orchid-gallery-page .og-intro {
+  position: relative;
+  z-index: 1;
+  padding-top: 100px !important;
+  padding-bottom: 24px;
+  scroll-margin-top: 100px;
+}
+
+.orchid-gallery-page .og-gallery-section {
+  position: relative;
+  z-index: 1;
+  padding-top: 42px !important;
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 820px) {
+  .orchid-gallery-page .og-intro {
+    padding-top: 76px !important;
+  }
+
+  .orchid-gallery-page .og-gallery-section {
+    padding-top: 34px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .orchid-gallery-page .og-nav {
+    margin-bottom: 0 !important;
+  }
+
+  .orchid-gallery-page .og-intro {
+    padding-top: 64px !important;
+    padding-bottom: 20px;
+  }
+
+  .orchid-gallery-page .og-gallery-section {
+    padding-top: 28px !important;
+  }
+}

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --navy: #07162c;
   --navy-deep: #04101f;
@@ -1421,4 +1425,65 @@ body { background:#fbf8f2; }
   .footer-main { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-main > :first-child { grid-column: 1 / -1; }
   .footer-main > div:not(:first-child) { padding-left: 10px; }
+}
+
+/* Fix icons overlapping input text in both enquiry forms */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+.input-with-icon > svg {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  color: #a96e24;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Reserve space for the icon before the input text starts */
+.enquiry-card .input-with-icon input,
+.contact-form .input-with-icon input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding-left: 42px !important;
+}
+
+/* Ensure form controls stay within their containers */
+.enquiry-card .field,
+.contact-form .field {
+  min-width: 0;
+}
+
+.enquiry-card .field input,
+.contact-form .field input,
+.contact-form .field select,
+.contact-form .field textarea {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* Contact form input sizing */
+.contact-form .input-with-icon input {
+  min-height: 42px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 7px;
+}
+
+/* Mobile spacing */
+@media (max-width: 700px) {
+  .enquiry-card .input-with-icon input,
+  .contact-form .input-with-icon input {
+    padding-left: 42px !important;
+  }
 }
