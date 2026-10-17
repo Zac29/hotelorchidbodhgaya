@@ -43,7 +43,7 @@ export interface RoomTariffItem {
   description: string;
 }
 
-export const roomTariffData: RoomTariffItem[] = [
+const roomTariffData: RoomTariffItem[] = [
   {
     id: "deluxe-double",
 
@@ -71,7 +71,7 @@ export const roomTariffData: RoomTariffItem[] = [
       "En-suite Bathroom",
     ],
 
-    image: "deluxe" in images ? "deluxe" : "hero",
+    image: "bedroom1",
 
     tag: "Popular Choice",
 
@@ -106,7 +106,7 @@ export const roomTariffData: RoomTariffItem[] = [
       "En-suite Bathroom",
     ],
 
-    image: "suite" in images ? "suite" : "hero",
+    image: "bedroom2",
 
     tag: "Ideal for Families",
 
@@ -141,7 +141,7 @@ export const roomTariffData: RoomTariffItem[] = [
       "En-suite Bathroom",
     ],
 
-    image: "standard" in images ? "standard" : "hero",
+    image: "bedroom3",
 
     tag: "Great Value",
 

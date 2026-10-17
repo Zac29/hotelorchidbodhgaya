@@ -9,8 +9,8 @@ const navItems = [
   { label: "Home", href: "/#home" },
   { label: "Rooms", href: "/rooms" },
   { label: "Gallery", href: "/#gallery" },
-  { label: "About Us", href: "/#about" },
-  { label: "Contact Us", href: "/#contact" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 function Logo() {
@@ -80,8 +80,8 @@ export default function Navbar() {
     };
 
     const updateActiveLink = () => {
-      if (window.location.pathname === "/rooms") {
-        setActiveLink("/rooms");
+      if (["/rooms", "/about", "/contact"].includes(window.location.pathname)) {
+        setActiveLink(window.location.pathname);
       } else {
         const hash = window.location.hash;
         setActiveLink(hash ? `/${hash}` : "/#home");
@@ -149,8 +149,8 @@ export default function Navbar() {
 
           <Link
             className="orchid-enquire-button"
-            href="/#contact"
-            onClick={() => handleNavigation("/#contact")}
+            href="/contact"
+            onClick={() => handleNavigation("/contact")}
           >
             <span>ENQUIRE NOW</span>
             <ArrowRight size={12} strokeWidth={2} />
