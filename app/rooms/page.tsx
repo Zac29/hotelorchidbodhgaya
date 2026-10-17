@@ -6,6 +6,8 @@ import Link from "next/link";
 
 import { useEffect, useState } from "react";
 
+import { roomTariffData } from "@/data/roomTariffData";
+
 import {
   ArrowRight,
   BedDouble,
@@ -19,6 +21,7 @@ import {
 
 import { images } from "@/lib/images";
 
+<<<<<<< Updated upstream
 export interface RoomTariffItem {
   id: string;
 
@@ -150,6 +153,8 @@ const roomTariffData: RoomTariffItem[] = [
   },
 ];
 
+=======
+>>>>>>> Stashed changes
 function formatPrice(price: number) {
   return `₹${price.toLocaleString("en-IN")}`;
 }
