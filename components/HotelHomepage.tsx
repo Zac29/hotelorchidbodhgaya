@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import Image from "next/image";
 
 import { FormEvent, useEffect, useState } from "react";
@@ -44,15 +46,15 @@ import { attractions } from "@/lib/constants";
 import HeroBenefits from "@/components/HeroBenefits";
 
 const navItems = [
-  ["Home", "#home"],
+  ["Home", "/#home"],
 
-  ["Rooms", "#rooms"],
+  ["Rooms", "/rooms"],
 
-  ["Gallery", "#gallery"],
+  ["Gallery", "/gallery"],
 
-  ["About Us", "#about"],
+  ["About Us", "/#about"],
 
-  ["Contact Us", "#contact"],
+  ["Contact Us", "/#contact"],
 ];
 
 // Room Tariff Data matching the official rate card
@@ -73,9 +75,13 @@ const roomTariffData = [
 
     amenities: [
       "Air Conditioning",
+
       "Free High-Speed Wi-Fi",
+
       "LED TV",
+
       "Room Service",
+
       "En-suite Bathroom",
     ],
 
@@ -102,9 +108,13 @@ const roomTariffData = [
 
     amenities: [
       "Air Conditioning",
+
       "Free High-Speed Wi-Fi",
+
       "Spacious Layout",
+
       "Room Service",
+
       "En-suite Bathroom",
     ],
 
@@ -131,9 +141,13 @@ const roomTariffData = [
 
     amenities: [
       "Ceiling Fan Cooling",
+
       "Free High-Speed Wi-Fi",
+
       "LED TV",
+
       "Daily Housekeeping",
+
       "En-suite Bathroom",
     ],
 
@@ -148,62 +162,94 @@ const roomTariffData = [
 
 type EnquiryState = {
   name: string;
+
   email: string;
+
   mobile: string;
+
   checkIn: string;
+
   checkOut: string;
 
   guests: string;
+
   room: string;
+
   message: string;
 };
 
 const emptyForm: EnquiryState = {
   name: "",
+
   email: "",
+
   mobile: "",
+
   checkIn: "",
+
   checkOut: "",
 
   guests: "",
+
   room: "",
+
   message: "",
 };
 
 const locationCards = [
   {
     title: "Mahabodhi Temple",
+
     descriptor: "",
+
     distance: "Main attraction in Bodh Gaya",
+
     detail: "Central Location",
+
     icon: Landmark,
+
     pin: true,
   },
 
   {
     title: "Gaya International Airport",
+
     descriptor: "",
+
     distance: "Approx. 7 – 11 km",
+
     detail: "Depending on reference point",
+
     icon: Plane,
+
     pin: false,
   },
 
   {
     title: "Gaya Junction",
+
     descriptor: "(Railway Station)",
+
     distance: "Approx. 15 – 20 km",
+
     detail: "from Bodh Gaya",
+
     icon: TrainFront,
+
     pin: true,
   },
 
   {
     title: "Patna Airport",
+
     descriptor: "",
+
     distance: "Approx. 135 km",
+
     detail: "from Bodh Gaya",
+
     icon: Building2,
+
     pin: true,
   },
 ];
@@ -211,27 +257,36 @@ const locationCards = [
 const guestReviews = [
   {
     name: "Rohit Sharma",
+
     place: "Delhi, India",
+
     avatar:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&h=120&q=80",
+
     quote:
       "“Excellent stay at Hotel Orchid. Very clean rooms, polite staff and great location near Mahabodhi Temple. Highly recommended!”",
   },
 
   {
     name: "Priya Mehta",
+
     place: "Mumbai, India",
+
     avatar:
       "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80",
+
     quote:
       "“Beautiful property with amazing hospitality. Rooms are spacious and well-maintained. Food was also delicious.”",
   },
 
   {
     name: "David Lee",
+
     place: "Singapore",
+
     avatar:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&h=120&q=80",
+
     quote:
       "“Perfect place for a peaceful stay in Bodhgaya. The staff is very helpful and the ambience is truly relaxing. Will visit again!”",
   },
@@ -251,9 +306,13 @@ function Logo() {
         strokeLinejoin="round"
       >
         <path d="M24 38V23" />
+
         <path d="M24 29C15 29 10 24 9 15c9 0 15 4 15 14Z" />
+
         <path d="M24 29c9 0 15-5 15-14-9 0-15 4-15 14Z" />
+
         <path d="M24 25c-6-5-7-11 0-18 7 7 6 13 0 18Z" />
+
         <path d="M12 37c7-3 17-3 24 0" />
       </svg>
 
@@ -268,13 +327,19 @@ function Logo() {
 
 function SectionHeading({
   eyebrow,
+
   title,
+
   subtitle,
+
   centered = false,
 }: {
   eyebrow: string;
+
   title: string;
+
   subtitle?: string;
+
   centered?: boolean;
 }) {
   return (
@@ -490,9 +555,13 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
               <option value="">Select guests</option>
 
               <option>1 Guest</option>
+
               <option>2 Guests</option>
+
               <option>3 Guests</option>
+
               <option>4 Guests</option>
+
               <option>5+ Guests</option>
             </select>
           </div>
@@ -549,6 +618,7 @@ export default function HotelHomepage() {
     function handleModalKeys(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setGalleryOpen(null);
+
         setRoomOpen(null);
       }
 
@@ -675,6 +745,7 @@ export default function HotelHomepage() {
         <span className="decor left" aria-hidden="true">
           ❧
         </span>
+
         <span className="decor right" aria-hidden="true">
           ❧
         </span>
@@ -737,10 +808,15 @@ export default function HotelHomepage() {
                 className="eyebrow"
                 style={{
                   color: "#d4a373",
+
                   fontWeight: 700,
+
                   letterSpacing: "1.2px",
+
                   textTransform: "uppercase",
+
                   fontSize: "0.85rem",
+
                   marginBottom: 6,
                 }}
               >
@@ -758,26 +834,39 @@ export default function HotelHomepage() {
             <div
               style={{
                 display: "inline-flex",
+
                 alignItems: "center",
+
                 flexWrap: "wrap",
+
                 gap: 12,
               }}
             >
               <div
                 style={{
                   display: "inline-flex",
+
                   alignItems: "center",
+
                   gap: 8,
+
                   backgroundColor: "#f4f6f9",
+
                   padding: "8px 16px",
+
                   borderRadius: 30,
+
                   border: "1px solid #e2e8f0",
+
                   fontSize: "0.82rem",
+
                   color: "#0c2340",
+
                   fontWeight: 600,
                 }}
               >
                 <Clock3 size={15} color="#b87d28" />
+
                 <span>
                   Check-out Time: <strong>12:00 PM</strong>
                 </span>
@@ -786,18 +875,28 @@ export default function HotelHomepage() {
               <div
                 style={{
                   display: "inline-flex",
+
                   alignItems: "center",
+
                   gap: 8,
+
                   backgroundColor: "#fdf8ee",
+
                   padding: "8px 16px",
+
                   borderRadius: 30,
+
                   border: "1px solid #fae6c6",
+
                   fontSize: "0.82rem",
+
                   color: "#b87d28",
+
                   fontWeight: 600,
                 }}
               >
                 <UserPlus size={15} color="#b87d28" />
+
                 <span>
                   Extra Pax: <strong>₹500</strong> / night
                 </span>
@@ -818,13 +917,21 @@ export default function HotelHomepage() {
                   key={room.name}
                   style={{
                     backgroundColor: "#ffffff",
+
                     borderRadius: 16,
+
                     border: "1px solid #e8ecf2",
+
                     boxShadow: "0 8px 30px rgba(12, 35, 64, 0.05)",
+
                     overflow: "hidden",
+
                     display: "flex",
+
                     flexDirection: isEven ? "row-reverse" : "row",
+
                     flexWrap: "wrap",
+
                     transition: "transform 0.25s ease, box-shadow 0.25s ease",
                   }}
                 >
@@ -833,8 +940,11 @@ export default function HotelHomepage() {
                   <div
                     style={{
                       flex: "1 1 420px",
+
                       position: "relative",
+
                       minHeight: "340px",
+
                       backgroundColor: "#1a2536",
                     }}
                   >
@@ -853,7 +963,9 @@ export default function HotelHomepage() {
                     <div
                       style={{
                         position: "absolute",
+
                         inset: 0,
+
                         background:
                           "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 100%)",
                       }}
@@ -863,18 +975,31 @@ export default function HotelHomepage() {
                       <span
                         style={{
                           position: "absolute",
+
                           top: 18,
+
                           left: isEven ? "auto" : 18,
+
                           right: isEven ? 18 : "auto",
+
                           backgroundColor: "rgba(12, 35, 64, 0.9)",
+
                           backdropFilter: "blur(4px)",
+
                           color: "#f6cf7d",
+
                           fontSize: "0.75rem",
+
                           fontWeight: 700,
+
                           padding: "5px 12px",
+
                           borderRadius: 6,
+
                           letterSpacing: "0.6px",
+
                           border: "1px solid rgba(246, 207, 125, 0.35)",
+
                           textTransform: "uppercase",
                         }}
                       >
@@ -885,22 +1010,34 @@ export default function HotelHomepage() {
                     <div
                       style={{
                         position: "absolute",
+
                         bottom: 16,
+
                         left: 18,
+
                         right: 18,
+
                         color: "#ffffff",
+
                         display: "flex",
+
                         flexWrap: "wrap",
+
                         gap: 16,
+
                         fontSize: "0.82rem",
+
                         fontWeight: 500,
+
                         textShadow: "0 1px 3px rgba(0,0,0,0.8)",
                       }}
                     >
                       <span
                         style={{
                           display: "inline-flex",
+
                           alignItems: "center",
+
                           gap: 6,
                         }}
                       >
@@ -911,7 +1048,9 @@ export default function HotelHomepage() {
                       <span
                         style={{
                           display: "inline-flex",
+
                           alignItems: "center",
+
                           gap: 6,
                         }}
                       >
@@ -921,7 +1060,9 @@ export default function HotelHomepage() {
                       <span
                         style={{
                           display: "inline-flex",
+
                           alignItems: "center",
+
                           gap: 6,
                         }}
                       >
@@ -936,9 +1077,13 @@ export default function HotelHomepage() {
                   <div
                     style={{
                       flex: "1 1 440px",
+
                       padding: "32px 36px",
+
                       display: "flex",
+
                       flexDirection: "column",
+
                       justifyContent: "space-between",
                     }}
                   >
@@ -946,8 +1091,11 @@ export default function HotelHomepage() {
                       <div
                         style={{
                           display: "flex",
+
                           justifyContent: "space-between",
+
                           alignItems: "flex-start",
+
                           gap: 12,
                         }}
                       >
@@ -955,9 +1103,13 @@ export default function HotelHomepage() {
                           <span
                             style={{
                               fontSize: "0.75rem",
+
                               textTransform: "uppercase",
+
                               letterSpacing: "1px",
+
                               color: "#b87d28",
+
                               fontWeight: 700,
                             }}
                           >
@@ -967,8 +1119,11 @@ export default function HotelHomepage() {
                           <h3
                             style={{
                               fontSize: "1.5rem",
+
                               color: "#0c2340",
+
                               margin: "4px 0 10px",
+
                               fontWeight: 700,
                             }}
                           >
@@ -980,8 +1135,11 @@ export default function HotelHomepage() {
                       <p
                         style={{
                           color: "#556377",
+
                           fontSize: "0.92rem",
+
                           lineHeight: 1.6,
+
                           margin: "0 0 18px",
                         }}
                       >
@@ -993,8 +1151,11 @@ export default function HotelHomepage() {
                       <div
                         style={{
                           display: "flex",
+
                           flexWrap: "wrap",
+
                           gap: "8px",
+
                           marginBottom: 22,
                         }}
                       >
@@ -1003,14 +1164,23 @@ export default function HotelHomepage() {
                             key={a}
                             style={{
                               display: "inline-flex",
+
                               alignItems: "center",
+
                               gap: 5,
+
                               backgroundColor: "#f8fafc",
+
                               border: "1px solid #e2e8f0",
+
                               color: "#334155",
+
                               fontSize: "0.78rem",
+
                               padding: "4px 10px",
+
                               borderRadius: 6,
+
                               fontWeight: 500,
                             }}
                           >
@@ -1026,29 +1196,43 @@ export default function HotelHomepage() {
                       <div
                         style={{
                           backgroundColor: "#fdfbf7",
+
                           borderRadius: 12,
+
                           border: "1px solid #fae6c6",
+
                           padding: "16px 20px",
+
                           display: "grid",
+
                           gridTemplateColumns: "1fr 1fr",
+
                           gap: 16,
+
                           marginBottom: 14,
                         }}
                       >
                         <div
                           style={{
                             borderRight: "1px solid #f2dec0",
+
                             paddingRight: 12,
                           }}
                         >
                           <span
                             style={{
                               fontSize: "0.72rem",
+
                               textTransform: "uppercase",
+
                               letterSpacing: "0.6px",
+
                               color: "#64748b",
+
                               fontWeight: 600,
+
                               display: "block",
+
                               marginBottom: 2,
                             }}
                           >
@@ -1058,14 +1242,18 @@ export default function HotelHomepage() {
                           <div
                             style={{
                               display: "flex",
+
                               alignItems: "baseline",
+
                               gap: 4,
                             }}
                           >
                             <strong
                               style={{
                                 fontSize: "1.45rem",
+
                                 color: "#0c2340",
+
                                 fontWeight: 800,
                               }}
                             >
@@ -1090,13 +1278,21 @@ export default function HotelHomepage() {
                           <span
                             style={{
                               fontSize: "0.72rem",
+
                               textTransform: "uppercase",
+
                               letterSpacing: "0.6px",
+
                               color: "#b87d28",
+
                               fontWeight: 700,
+
                               display: "inline-flex",
+
                               alignItems: "center",
+
                               gap: 4,
+
                               marginBottom: 2,
                             }}
                           >
@@ -1106,14 +1302,18 @@ export default function HotelHomepage() {
                           <div
                             style={{
                               display: "flex",
+
                               alignItems: "baseline",
+
                               gap: 4,
                             }}
                           >
                             <strong
                               style={{
                                 fontSize: "1.45rem",
+
                                 color: "#b87d28",
+
                                 fontWeight: 800,
                               }}
                             >
@@ -1136,21 +1336,32 @@ export default function HotelHomepage() {
                       </div>
 
                       {/* Extra Pax Note */}
+
                       <div
                         style={{
                           display: "inline-flex",
+
                           alignItems: "center",
+
                           gap: 6,
+
                           fontSize: "0.78rem",
+
                           color: "#475569",
+
                           backgroundColor: "#f8fafc",
+
                           border: "1px dashed #cbd5e1",
+
                           borderRadius: 6,
+
                           padding: "6px 12px",
+
                           marginBottom: 16,
                         }}
                       >
                         <UserPlus size={13} color="#b87d28" />
+
                         <span>
                           Extra Person / Bed:{" "}
                           <strong style={{ color: "#0c2340" }}>
@@ -1165,9 +1376,13 @@ export default function HotelHomepage() {
                       <div
                         style={{
                           display: "flex",
+
                           justifyContent: "space-between",
+
                           alignItems: "center",
+
                           flexWrap: "wrap",
+
                           gap: 12,
                         }}
                       >
@@ -1176,7 +1391,7 @@ export default function HotelHomepage() {
 
                           <span style={{ margin: "0 6px" }}>·</span>
 
-                          <span>* Rates subjected to revision</span>
+                          <span>\* Rates subjected to revision</span>
                         </div>
 
                         <div style={{ display: "flex", gap: 10 }}>
@@ -1186,7 +1401,9 @@ export default function HotelHomepage() {
                             onClick={() => setRoomOpen(i)}
                             style={{
                               padding: "8px 14px",
+
                               fontSize: "0.8rem",
+
                               height: "auto",
                             }}
                           >
@@ -1198,8 +1415,11 @@ export default function HotelHomepage() {
                             className="gold-btn"
                             style={{
                               padding: "8px 18px",
+
                               fontSize: "0.8rem",
+
                               height: "auto",
+
                               textDecoration: "none",
                             }}
                           >
@@ -1250,25 +1470,33 @@ export default function HotelHomepage() {
               {[
                 [
                   BedDouble,
+
                   "Comfortable Rooms",
+
                   "Spacious A/C and Non-A/C choices",
                 ],
 
                 [
                   UtensilsCrossed,
+
                   "Multi-Cuisine Dining",
+
                   "Fresh meals & wholesome breakfast",
                 ],
 
                 [
                   Clock3,
+
                   "24/7 Guest Support",
+
                   "Prompt desk & round-the-clock service",
                 ],
 
                 [
                   Car,
+
                   "Easy Access to Local Travel",
+
                   "Temple connectivity & cab assistance",
                 ],
               ].map(([Icon, title, sub]) => (
@@ -1277,6 +1505,7 @@ export default function HotelHomepage() {
 
                   <div>
                     <strong>{title as string}</strong>
+
                     <span>{sub as string}</span>
                   </div>
                 </div>
@@ -1298,12 +1527,9 @@ export default function HotelHomepage() {
               </p>
             </div>
 
-            <button
-              className="small-gold-btn gallery-cta"
-              onClick={() => setGalleryOpen(0)}
-            >
+            <Link href="/gallery" className="small-gold-btn gallery-cta">
               View Full Gallery <ArrowRight size={12} />
-            </button>
+            </Link>
           </div>
 
           <div className="gallery-grid">
@@ -1341,6 +1567,7 @@ export default function HotelHomepage() {
               <button aria-label="Previous guest reviews">
                 <ChevronLeft size={16} />
               </button>
+
               <button aria-label="Next guest reviews">
                 <ArrowRight size={16} />
               </button>
@@ -1355,7 +1582,9 @@ export default function HotelHomepage() {
 
                   <div>
                     <strong>{review.name}</strong>
+
                     <span>{review.place}</span>
+
                     <div className="review-stars" aria-label="5 out of 5 stars">
                       {Array.from({ length: 5 }, (_, i) => (
                         <Star key={i} size={15} fill="currentColor" />
@@ -1373,6 +1602,7 @@ export default function HotelHomepage() {
 
       <section className="section travel">
         <span className="decor left">❧</span>
+
         <span className="decor right">❧</span>
 
         <div className="container travel-layout">
@@ -1384,6 +1614,7 @@ export default function HotelHomepage() {
             <div className="section-head-row">
               <div className="reference-section-heading">
                 <h2 className="section-title">Plan Your Bodhgaya Journey</h2>
+
                 <p className="section-subtitle">
                   Spiritual highlights, local sightseeing and travel
                   information.
@@ -1399,43 +1630,62 @@ export default function HotelHomepage() {
               {[
                 [
                   Landmark,
+
                   "Spiritual Highlights",
+
                   [
                     "Mahabodhi Temple",
+
                     "80 Feet Buddha",
+
                     "Thai Temple",
-                    "Japanese Temple",
+
+                    "The Royal Bhutanese Monastery Bodh Gaya",
                   ],
                 ],
 
                 [
                   Compass,
+
                   "Local Sightseeing",
+
                   [
                     "Dungeshwari Cave",
+
                     "Sujata Stupa",
-                    "Muchalinda Sarovar",
+
+                    "Metta Buddharam Temple",
+
                     "Vishnupad Temple",
                   ],
                 ],
 
                 [
                   Plane,
+
                   "Airport & Railway",
+
                   [
-                    "Gaya International Airport • ~ 7–11 km",
-                    "Gaya Junction • ~ 15–20 km",
-                    "Patna Airport • ~ 135 km",
+                    "Gaya International Airport • \~ 7–11 km",
+
+                    "Gaya Junction • \~ 15–20 km",
+
+                    "Patna Airport • \~ 135 km",
                   ],
                 ],
 
                 [
                   Car,
+
                   "Local Transport",
+
                   [
                     "Taxis & Cabs",
+
                     "Auto Rickshaws",
+
                     "Local Sightseeing Tours",
+
                     "Easy connectivity to nearby places",
                   ],
                 ],
@@ -1452,6 +1702,7 @@ export default function HotelHomepage() {
                       {(list as string[]).map((item) => (
                         <li key={item}>
                           <Check size={11} />
+
                           {item}
                         </li>
                       ))}
@@ -1482,30 +1733,36 @@ export default function HotelHomepage() {
             <div className="contact-list" style={{ marginTop: 22 }}>
               <div className="contact-item">
                 <Phone size={18} />
+
                 <div>
                   <strong>
                     <a href="tel:+919876543210">+91 98765 43210</a>
                   </strong>
+
                   <span>Available 24/7</span>
                 </div>
               </div>
 
               <div className="contact-item">
                 <MapPin size={18} />
+
                 <div>
-                  <strong>Near Mahabodhi Temple</strong>
+                  <strong>Near Karmappa Temple, Sujata Bypass, Bodhgaya</strong>
+
                   <span>Bodh Gaya, Bihar – 824231, India</span>
                 </div>
               </div>
 
               <div className="contact-item">
                 <Globe2 size={18} />
+
                 <div>
                   <strong>
-                    <a href="mailto:info@hotelorchidbodhgaya.com">
-                      info@hotelorchidbodhgaya.com
+                    <a href="mailto:hotelorchidbodhgaya@gmail.com">
+                      hotelorchidbodhgaya@gmail.com
                     </a>
                   </strong>
+
                   <span>Send us a message</span>
                 </div>
               </div>
@@ -1529,7 +1786,9 @@ export default function HotelHomepage() {
 
             <span className="map-marker">
               <MapPin size={27} fill="currentColor" />
+
               <b>Hotel Orchid Bodhgaya</b>
+
               <small>Near Mahabodhi Temple</small>
             </span>
           </a>
@@ -1597,6 +1856,7 @@ export default function HotelHomepage() {
       )}
 
       {/* Room Details Modal */}
+
       {roomOpen !== null && (
         <div className="room-modal-backdrop" onClick={() => setRoomOpen(null)}>
           <div
@@ -1643,11 +1903,13 @@ export default function HotelHomepage() {
               <div className="modal-room-facts">
                 <span>
                   <CircleUserRound size={17} />
+
                   {roomTariffData[roomOpen].guests}
                 </span>
 
                 <span>
                   <BedDouble size={18} />
+
                   {roomTariffData[roomOpen].bed}
                 </span>
 
@@ -1664,6 +1926,7 @@ export default function HotelHomepage() {
                 {roomTariffData[roomOpen].amenities.map((amenity) => (
                   <span key={amenity}>
                     <Check size={14} />
+
                     {amenity}
                   </span>
                 ))}
@@ -1672,18 +1935,22 @@ export default function HotelHomepage() {
               <div className="modal-prices">
                 <div>
                   <span>Room only</span>
+
                   <strong>
                     ₹{roomTariffData[roomOpen].noMeals.toLocaleString("en-IN")}
                   </strong>
+
                   <small>Per night</small>
                 </div>
 
                 <div>
                   <span>With breakfast</span>
+
                   <strong>
                     ₹
                     {roomTariffData[roomOpen].breakfast.toLocaleString("en-IN")}
                   </strong>
+
                   <small>Per night</small>
                 </div>
               </div>
@@ -1691,18 +1958,28 @@ export default function HotelHomepage() {
               <div
                 style={{
                   display: "flex",
+
                   alignItems: "center",
+
                   gap: 8,
+
                   marginTop: 14,
+
                   padding: "10px 14px",
+
                   backgroundColor: "#fcfaf6",
+
                   border: "1px solid #ede3d1",
+
                   borderRadius: 6,
+
                   fontSize: "0.82rem",
+
                   color: "#172e49",
                 }}
               >
                 <UserPlus size={15} color="#bd873b" />
+
                 <span>
                   Additional Guest / Extra Bed:{" "}
                   <strong>
@@ -1732,60 +2009,95 @@ export default function HotelHomepage() {
       <style jsx>{`
         .room-modal-backdrop {
           position: fixed;
+
           z-index: 1000;
+
           inset: 0;
+
           display: flex;
+
           align-items: center;
+
           justify-content: center;
+
           overflow-y: auto;
+
           padding: 24px;
+
           background: rgba(12, 24, 39, 0.72);
+
           backdrop-filter: blur(5px);
         }
 
         .room-modal {
           position: relative;
+
           width: 100%;
+
           max-width: 640px;
+
           max-height: calc(100dvh - 48px);
+
           overflow-y: auto;
+
           border: 1px solid rgba(255, 255, 255, 0.5);
+
           border-radius: 12px;
+
           background: #fff;
+
           box-shadow: 0 25px 90px rgba(0, 0, 0, 0.24);
+
           animation: room-modal-appear 200ms ease-out;
         }
 
         @keyframes room-modal-appear {
           from {
             opacity: 0;
+
             transform: translateY(10px);
           }
+
           to {
             opacity: 1;
+
             transform: translateY(0);
           }
         }
 
         .room-modal-close {
           position: absolute;
+
           z-index: 3;
+
           top: 14px;
+
           right: 14px;
+
           display: grid;
+
           place-items: center;
+
           width: 38px;
+
           height: 38px;
+
           border: 1px solid rgba(255, 255, 255, 0.65);
+
           border-radius: 50%;
+
           background: rgba(23, 46, 73, 0.88);
+
           color: #fff;
+
           cursor: pointer;
         }
 
         .room-modal-photo {
           position: relative;
+
           height: 240px;
+
           background: #e6e2da;
         }
 
@@ -1795,90 +2107,129 @@ export default function HotelHomepage() {
 
         .room-modal-content > h2 {
           margin: 9px 0 10px;
+
           color: #172e49;
+
           font-family: Georgia, "Times New Roman", serif;
+
           font-size: 29px;
+
           font-weight: 500;
+
           line-height: 1.2;
         }
 
         .modal-description {
           margin: 0;
+
           color: #697487;
+
           font-size: 13px;
+
           line-height: 1.8;
         }
 
         .modal-room-facts {
           display: flex;
+
           flex-wrap: wrap;
+
           gap: 17px;
+
           margin: 19px 0 24px;
+
           padding-bottom: 20px;
+
           border-bottom: 1px solid #ece8e0;
         }
 
         .modal-room-facts span {
           display: inline-flex;
+
           align-items: center;
+
           gap: 8px;
+
           color: #536175;
+
           font-size: 12px;
         }
 
         .modal-room-facts svg,
         .modal-amenities svg {
           flex-shrink: 0;
+
           color: #bd873b;
         }
 
         .modal-subheading {
           margin: 0 0 13px;
+
           color: #172e49;
+
           font-size: 14px;
         }
 
         .modal-amenities {
           display: grid;
+
           grid-template-columns: repeat(2, minmax(0, 1fr));
+
           gap: 12px;
+
           margin-bottom: 24px;
         }
 
         .modal-amenities span {
           display: flex;
+
           align-items: flex-start;
+
           gap: 8px;
+
           color: #536175;
+
           font-size: 12px;
+
           line-height: 1.5;
         }
 
         .modal-prices {
           display: grid;
+
           grid-template-columns: 1fr 1fr;
+
           gap: 12px;
         }
 
         .modal-prices > div {
           display: flex;
+
           flex-direction: column;
+
           align-items: flex-start;
+
           gap: 6px;
+
           padding: 15px;
+
           border: 1px solid #e9e2d5;
+
           border-radius: 7px;
+
           background: #fdfbf7;
         }
 
         .modal-prices > div > span,
         .modal-prices small {
           color: #778092;
+
           font-size: 11px;
         }
 
         .modal-prices strong {
           color: #172e49;
+
           font-size: 24px;
         }
 
@@ -1888,26 +2239,43 @@ export default function HotelHomepage() {
 
         .modal-tax-note {
           margin: 17px 0;
+
           color: #858b96;
+
           font-size: 11px;
+
           line-height: 1.6;
         }
 
         .modal-book-button {
           display: flex;
+
           align-items: center;
+
           justify-content: center;
+
           gap: 10px;
+
           width: 100%;
+
           min-height: 47px;
+
           padding: 12px 18px;
+
           border: 1px solid #bd873b;
+
           border-radius: 5px;
+
           background: #bd873b;
+
           color: #fff;
+
           font-size: 12px;
+
           font-weight: 700;
+
           text-decoration: none;
+
           transition: background 180ms ease;
         }
 

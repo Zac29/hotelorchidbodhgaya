@@ -181,7 +181,7 @@ export default function Footer() {
 
               <span>
 
-                <MapPin size={13} /> Near Mahabodhi Temple,
+                <MapPin size={13} /> Near Karmappa Temple, Sujata Bypass, Bodhgaya,
 
                 <br />
 
@@ -195,9 +195,9 @@ export default function Footer() {
 
               </a>
 
-              <a href="mailto:info@hotelorchidbodhgaya.com">
+              <a href="mailto:hotelorchidbodhgaya@gmail.com">
 
-                <Globe2 size={13} /> info@hotelorchidbodhgaya.com
+                <Globe2 size={13} /> hotelorchidbodhgaya@gmail.com
 
               </a>
 
@@ -209,7 +209,7 @@ export default function Footer() {
 
         <div className="container footer-bottom">
 
-          <span>© 2026 Hotel Orchid Bodhgaya. All Rights Reserved.</span>
+          <span>© 2026 Hotel Orchid Bodhgaya | All Rights Reserved | <a href="https://www.thecyberloom.com" target="_blank" rel="noopener noreferrer">Powered by TheCyberLoom</a></span>
 
           <span>Hospitality with heart in Bodh Gaya</span>
 

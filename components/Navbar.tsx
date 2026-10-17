@@ -8,7 +8,7 @@ import "./Navbar.css";
 const navItems = [
   { label: "Home", href: "/#home" },
   { label: "Rooms", href: "/rooms" },
-  { label: "Gallery", href: "/#gallery" },
+  { label: "Gallery", href: "/gallery" },
   { label: "About Us", href: "/about" },
   { label: "Contact Us", href: "/contact" },
 ];
@@ -75,33 +75,40 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const updateScroll = () => {
+    const syncNavigation = () => {
+      const pathname = window.location.pathname;
+      const hash = window.location.hash;
+
+      // Determine the active navigation item.
+      if (pathname === "/rooms") {
+        setActiveLink("/rooms");
+      } else if (pathname === "/gallery") {
+        setActiveLink("/gallery");
+      } else if (pathname === "/about") {
+        setActiveLink("/about");
+      } else if (pathname === "/contact") {
+        setActiveLink("/contact");
+      } else if (hash === "#contact") {
+        setActiveLink("/#contact");
+      } else {
+        setActiveLink("/#home");
+      }
+
       setScrolled(window.scrollY > 30);
     };
 
-    const updateActiveLink = () => {
-      if (["/rooms", "/about", "/contact"].includes(window.location.pathname)) {
-        setActiveLink(window.location.pathname);
-      } else {
-        const hash = window.location.hash;
-        setActiveLink(hash ? `/${hash}` : "/#home");
-      }
-    };
+    syncNavigation();
 
-    updateScroll();
-    updateActiveLink();
-
-    window.addEventListener("scroll", updateScroll, {
+    window.addEventListener("scroll", syncNavigation, {
       passive: true,
     });
-
-    window.addEventListener("hashchange", updateActiveLink);
-    window.addEventListener("popstate", updateActiveLink);
+    window.addEventListener("popstate", syncNavigation);
+    window.addEventListener("hashchange", syncNavigation);
 
     return () => {
-      window.removeEventListener("scroll", updateScroll);
-      window.removeEventListener("hashchange", updateActiveLink);
-      window.removeEventListener("popstate", updateActiveLink);
+      window.removeEventListener("scroll", syncNavigation);
+      window.removeEventListener("popstate", syncNavigation);
+      window.removeEventListener("hashchange", syncNavigation);
     };
   }, []);
 
@@ -121,21 +128,23 @@ export default function Navbar() {
           className="orchid-desktop-nav"
           aria-label="Main navigation"
         >
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => handleNavigation(item.href)}
-              className={`orchid-nav-link ${
-                activeLink === item.href ? "is-active" : ""
-              }`}
-              aria-current={
-                activeLink === item.href ? "page" : undefined
-              }
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const active = activeLink === item.href;
+
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={() => handleNavigation(item.href)}
+                className={`orchid-nav-link ${
+                  active ? "is-active" : ""
+                }`}
+                aria-current={active ? "page" : undefined}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="orchid-navbar-actions">
@@ -152,8 +161,7 @@ export default function Navbar() {
             href="/contact"
             onClick={() => handleNavigation("/contact")}
           >
-            <span>ENQUIRE NOW</span>
-            <ArrowRight size={12} strokeWidth={2} />
+            ENQUIRE NOW <ArrowRight size={12} />
           </Link>
         </div>
 
@@ -163,7 +171,7 @@ export default function Navbar() {
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           aria-controls="orchid-mobile-navigation"
-          onClick={() => setMenuOpen((previous) => !previous)}
+          onClick={() => setMenuOpen((open) => !open)}
         >
           {menuOpen ? <X size={23} /> : <Menu size={23} />}
         </button>
@@ -176,26 +184,30 @@ export default function Navbar() {
         }`}
         aria-label="Mobile navigation"
         aria-hidden={!menuOpen}
+        inert={!menuOpen}
       >
-        {navItems.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            tabIndex={menuOpen ? 0 : -1}
-            onClick={() => handleNavigation(item.href)}
-            className={`orchid-mobile-link ${
-              activeLink === item.href ? "is-active" : ""
-            }`}
-          >
-            {item.label}
-          </Link>
-        ))}
+        {navItems.map((item) => {
+          const active = activeLink === item.href;
+
+          return (
+            <Link
+              key={item.label}
+              href={item.href}
+              onClick={() => handleNavigation(item.href)}
+              className={`orchid-mobile-link ${
+                active ? "is-active" : ""
+              }`}
+              aria-current={active ? "page" : undefined}
+            >
+              {item.label}
+            </Link>
+          );
+        })}
 
         <Link
-          href="/#contact"
-          tabIndex={menuOpen ? 0 : -1}
+          href="/contact"
           className="orchid-mobile-enquire"
-          onClick={() => handleNavigation("/#contact")}
+          onClick={() => handleNavigation("/contact")}
         >
           ENQUIRE NOW <ArrowRight size={14} />
         </Link>

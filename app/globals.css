@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --navy: #07162c;
   --navy-deep: #04101f;
@@ -1423,6 +1427,69 @@ body { background:#fbf8f2; }
   .footer-main > div:not(:first-child) { padding-left: 10px; }
 }
 
+/* Fix icons overlapping input text in both enquiry forms */
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+.input-with-icon > svg {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  color: #a96e24;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Reserve space for the icon before the input text starts */
+.enquiry-card .input-with-icon input,
+.contact-form .input-with-icon input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding-left: 42px !important;
+}
+
+/* Ensure form controls stay within their containers */
+.enquiry-card .field,
+.contact-form .field {
+  min-width: 0;
+}
+
+.enquiry-card .field input,
+.contact-form .field input,
+.contact-form .field select,
+.contact-form .field textarea {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* Contact form input sizing */
+.contact-form .input-with-icon input {
+  min-height: 42px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 7px;
+}
+
+/* Mobile spacing */
+@media (max-width: 700px) {
+  .enquiry-card .input-with-icon input,
+  .contact-form .input-with-icon input {
+    padding-left: 42px !important;
+  }
+}
+
+
+/* About Us and Contact page styles adapted from the supplied reference CSS */
 /* Dedicated About and Contact pages */
 .story-page, .contact-page { --story-ink:#14253a; --story-gold:#b37a32; --story-cream:#f8f4ed; color:var(--story-ink); background:#fff; }
 .story-container { width:min(1200px,calc(100% - 64px)); margin-inline:auto; }
@@ -1465,4 +1532,3 @@ body { background:#fbf8f2; }
 @media(max-width:650px) { .story-container { width:calc(100% - 36px); }.story-hero { min-height:670px; padding:85px 24px 90px; }.story-hero-content { padding-top:24px; }.story-hero h1 { font-size:58px; }.story-hero-content > p { font-size:14px; }.story-hero-caption { right:22px; bottom:22px; font-size:8px; }.about-intro { grid-template-columns:1fr; gap:19px; padding-top:57px; padding-bottom:60px; }.about-intro-copy h2 { font-size:43px; }.about-intro-copy .about-lead { font-size:18px; }.about-visual-band { padding:55px 0 65px; }.about-visual-grid { grid-template-columns:1fr 1fr; grid-template-rows:auto 270px 95px; gap:10px; }.about-visual-copy { grid-column:1/-1; padding:0 0 18px; }.about-visual-copy h2 { font-size:43px; }.about-photo-main { grid-column:1/-1; grid-row:2; min-height:270px; }.about-photo-small { width:78%; height:130px; grid-column:1; grid-row:3; margin:-35px 0 0 0; border-width:6px; }.about-photo-note { right:0; bottom:8px; padding:10px 13px; }.about-photo-note b { font-size:14px; }.about-highlights { padding-top:59px; padding-bottom:65px; }.about-highlights h2 { font-size:40px; }.about-highlight { min-height:160px; padding:17px 13px; }.about-highlight h3 { font-size:15px; }.about-highlight p { font-size:10px; }.story-cta { min-height:310px; }.story-cta h2 { font-size:43px; }
   .contact-page-hero { grid-template-columns:1fr; }.contact-page-hero-copy { min-height:480px; padding:105px 24px 45px; }.contact-page-hero h1 { font-size:54px; }.contact-page-hero-photo { min-height:310px; }.contact-page-main { grid-template-columns:1fr; gap:38px; padding-top:59px; padding-bottom:65px; }.contact-details-column h2 { font-size:45px; }.contact-form-panel { padding:23px 17px; }.contact-form-heading h2 { font-size:28px; }.contact-fields-two { gap:10px; }.premium-contact-form { gap:13px; }.premium-contact-form input,.premium-contact-form select { min-height:42px; padding:10px 8px; font-size:10px; }.contact-map-section { padding:55px 0; }.contact-map-layout { grid-template-columns:1fr; gap:25px; }.contact-map-layout h2 { font-size:41px; }.contact-map { height:260px; border-width:6px; }
 }
-
