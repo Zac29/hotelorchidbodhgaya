@@ -1640,7 +1640,7 @@ export default function HotelHomepage() {
 
                     "Thai Temple",
 
-                    "Japanese Temple",
+                    "The Royal Bhutanese Monastery Bodh Gaya",
                   ],
                 ],
 
@@ -1654,7 +1654,7 @@ export default function HotelHomepage() {
 
                     "Sujata Stupa",
 
-                    "Muchalinda Sarovar",
+                    "Metta Buddharam Temple",
 
                     "Vishnupad Temple",
                   ],

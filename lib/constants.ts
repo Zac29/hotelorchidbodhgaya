@@ -37,9 +37,9 @@ export const attractions = [
   ["Mahabodhi Temple", "~ 1 km", "Main attraction in Bodh Gaya"],
   ["80 Feet Buddha", "~ 1 km", "Peaceful landmark"],
   ["Thai Temple", "~ 1.5 km", "Beautiful Thai monastery"],
-  ["Japanese Temple", "~ 1.5 km", "Traditional Japanese temple"],
+  ["The Royal Bhutanese Monastery Bodh Gaya", "~ 1.5 km", "Traditional The Royal Bhutanese Monastery Bodh Gaya"],
   ["Dungeshwari Cave", "~ 12 km", "Historic meditation caves"],
   ["Sujata Stupa", "~ 12 km", "Sacred Buddhist site"],
-  ["Muchalinda Sarovar", "~ 1.4 km", "Peaceful lakeside"],
+  ["Metta Buddharam Temple", "~ 1.4 km", "Peaceful Buddhist Temple"],
   ["Vishnupad Temple", "~ 17 km", "Historic temple in Gaya"],
 ] as const;
