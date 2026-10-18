@@ -1,19 +1,48 @@
 "use client";
 
-import type { FormEvent } from "react";
+import { FormEvent, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Clock3, Mail, MapPin, Phone } from "lucide-react";
 import "./contact-page.css";
 
 export default function ContactPage() {
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState("");
+  const requestRef = useRef<{ signature: string; id: string } | null>(null);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
-    const data = new FormData(event.currentTarget);
-    const subject = `Stay enquiry from ${data.get("name")}`;
-    const body = `Name: ${data.get("name")}\nEmail: ${data.get("email")}\nPhone: ${data.get("phone")}\nArrival: ${data.get("arrival")}\nDeparture: ${data.get("departure")}\nGuests: ${data.get("guests")}\n\nMessage:\n${data.get("message")}`;
-
-    window.location.href = `mailto:info@hotelorchidbodhgaya.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const enquiry = {
+      name: data.get("name"), email: data.get("email"), phone: data.get("phone"),
+      arrival: data.get("arrival"), departure: data.get("departure"),
+      guests: data.get("guests"), message: data.get("message"), source: "Contact page",
+      website: data.get("website"),
+    };
+    const signature = JSON.stringify(enquiry);
+    if (!requestRef.current || requestRef.current.signature !== signature) {
+      requestRef.current = { signature, id: crypto.randomUUID() };
+    }
+    const requestId = requestRef.current.id;
+    setSubmitting(true);
+    setStatus("");
+    try {
+      const response = await fetch("/api/enquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...enquiry, requestId }),
+      });
+      const result = await response.json().catch(() => null);
+      if (!response.ok) throw new Error(result?.error || "Your enquiry could not be sent. Please try again.");
+      setStatus("Thank you. Your enquiry has been sent to our team.");
+      requestRef.current = null;
+      form.reset();
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "Your enquiry could not be sent. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -111,55 +140,13 @@ export default function ContactPage() {
           </p>
 
           <form className="premium-contact-form" onSubmit={handleSubmit}>
-            <div className="contact-fields-two">
-              <label>
-                Your name
-                <input name="name" autoComplete="name" placeholder="Full name" required />
-              </label>
-              <label>
-                Email address
-                <input name="email" type="email" autoComplete="email" placeholder="you@example.com" required />
-              </label>
-            </div>
-
-            <div className="contact-fields-two">
-              <label>
-                Phone number
-                <input name="phone" type="tel" autoComplete="tel" placeholder="+91" />
-              </label>
-              <label>
-                Number of guests
-                <select name="guests" defaultValue="2 guests">
-                  <option>1 guest</option>
-                  <option>2 guests</option>
-                  <option>3 guests</option>
-                  <option>4+ guests</option>
-                </select>
-              </label>
-            </div>
-
-            <div className="contact-fields-two">
-              <label>
-                Arrival date
-                <input name="arrival" type="date" />
-              </label>
-              <label>
-                Departure date
-                <input name="departure" type="date" />
-              </label>
-            </div>
-
-            <label>
-              Your message
-              <textarea name="message" rows={4} placeholder="Tell us about your plans or any special requests…" />
-            </label>
-
-            <button className="contact-submit" type="submit">
-              Send your enquiry <ArrowRight size={16} />
-            </button>
-            <small className="contact-form-footnote">
-              Your email app will open with your enquiry ready to send.
-            </small>
+            <div className="enquiry-honeypot" aria-hidden="true"><label>Leave this field empty<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
+            <div className="contact-fields-two"><label>Your name<input name="name" autoComplete="name" placeholder="Full name" required /></label><label>Email address<input name="email" type="email" autoComplete="email" placeholder="you@example.com" required /></label></div>
+            <div className="contact-fields-two"><label>Phone number<input name="phone" type="tel" autoComplete="tel" placeholder="+91" /></label><label>Number of guests<select name="guests" defaultValue="2 guests"><option>1 guest</option><option>2 guests</option><option>3 guests</option><option>4+ guests</option></select></label></div>
+            <div className="contact-fields-two"><label>Arrival date<input name="arrival" type="date" /></label><label>Departure date<input name="departure" type="date" /></label></div>
+            <label>Your message<textarea name="message" rows={4} placeholder="Tell us about your plans or any special requests…" /></label>
+            <button className="contact-submit" type="submit" disabled={submitting}>{submitting ? "Sending..." : "Send your enquiry"} <ArrowRight size={16} /></button>
+            <small className="contact-form-footnote" role="status">{status || "Your enquiry will be sent to our team."}</small>
           </form>
         </div>
       </section>

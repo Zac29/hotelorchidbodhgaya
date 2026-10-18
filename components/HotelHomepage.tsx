@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import Image from "next/image";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
 import {
   ArrowRight,
@@ -360,7 +360,11 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
 
   const [sent, setSent] = useState(false);
 
+  const [submitting, setSubmitting] = useState(false);
+  const requestIdRef = useRef<string | null>(null);
+
   function update(key: keyof EnquiryState, value: string) {
+    requestIdRef.current = null;
     setForm((old) => ({ ...old, [key]: value }));
 
     setErrors([]);
@@ -368,7 +372,7 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
     setSent(false);
   }
 
-  function submit(e: FormEvent) {
+  async function submit(e: FormEvent) {
     e.preventDefault();
 
     const next: string[] = [];
@@ -398,29 +402,38 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
     setErrors(next);
 
     if (!next.length) {
-      const body = [
-        `Name: ${form.name.trim()}`,
-
-        `Email: ${form.email.trim() || "Not provided"}`,
-
-        `Mobile: ${form.mobile.trim()}`,
-
-        `Check-in: ${form.checkIn}`,
-
-        `Check-out: ${form.checkOut}`,
-
-        `Guests: ${form.guests}`,
-
-        `Room: ${form.room || "No preference"}`,
-
-        `Message: ${form.message.trim() || "None"}`,
-      ].join("\n");
-
-      const subject = `Hotel enquiry from ${form.name.trim()}`;
-
-      window.location.href = `mailto:info@hotelorchidbodhgaya.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-      setSent(true);
+      requestIdRef.current ||= crypto.randomUUID();
+      const requestId = requestIdRef.current;
+      setSubmitting(true);
+      try {
+        const response = await fetch("/api/enquiries", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            phone: form.mobile,
+            arrival: form.checkIn,
+            departure: form.checkOut,
+            guests: form.guests,
+            room: form.room,
+            message: form.message,
+            source: compact ? "Homepage contact form" : "Homepage booking form",
+            website: (e.currentTarget.elements.namedItem("website") as HTMLInputElement)?.value ?? "",
+            requestId,
+          }),
+        });
+        if (!response.ok) {
+          const result = await response.json().catch(() => null);
+          throw new Error(result?.error || "Your enquiry could not be sent. Please try again.");
+        }
+        setSent(true);
+        requestIdRef.current = null;
+      } catch (error) {
+        setErrors([error instanceof Error ? error.message : "Your enquiry could not be sent. Please try again."]);
+      } finally {
+        setSubmitting(false);
+      }
     }
   }
 
@@ -430,6 +443,7 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
       onSubmit={submit}
       noValidate
     >
+      <div className="enquiry-honeypot" aria-hidden="true"><label>Leave this field empty<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
       {!compact && (
         <>
           <h2>Enquire Now</h2>
@@ -446,8 +460,7 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
 
       {sent && (
         <div className="success" role="status">
-          Your email app is ready with the enquiry. Review it and press Send to
-          complete your request.
+          Thank you. Your enquiry has been sent to our team.
         </div>
       )}
 
@@ -598,8 +611,8 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
           />
         </div>
 
-        <button className="gold-btn form-submit" type="submit">
-          <Send size={13} /> {compact ? "Submit Enquiry" : "Send Enquiry"}{" "}
+        <button className="gold-btn form-submit" type="submit" disabled={submitting}>
+          <Send size={13} /> {submitting ? "Sending..." : compact ? "Submit Enquiry" : "Send Enquiry"}{" "}
           <ArrowRight size={13} />
         </button>
       </div>
