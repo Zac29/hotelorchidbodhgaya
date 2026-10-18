@@ -229,6 +229,8 @@
   overflow-wrap: anywhere;
 }
 
+.contact-page .contact-detail-card strong a { color: inherit; text-decoration: none; }
+
 .contact-page .contact-detail-card p {
   margin: 4px 0 0;
   color: #83878a;

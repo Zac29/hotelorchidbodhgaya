@@ -189,10 +189,12 @@ export default function Footer() {
 
               </span>
 
-              <a href="tel:+919876543210">
+              <a href="tel:+919934070237">
+                <Phone size={13} /> +91 99340 70237
+              </a>
 
-                <Phone size={13} /> +91 98765 43210
-
+              <a href="tel:+917992269493">
+                <Phone size={13} /> +91 79922 69493
               </a>
 
               <a href="mailto:hotelorchidbodhgaya@gmail.com">

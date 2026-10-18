@@ -87,15 +87,16 @@ export default function ContactPage() {
             visit.
           </p>
 
-          <a className="contact-detail-card" href="tel:+919876543210">
+          <div className="contact-detail-card">
             <span><Phone size={19} /></span>
             <div>
               <small>CALL OUR TEAM</small>
-              <strong>+91 98765 43210</strong>
+              <strong><a href="tel:+919934070237">+91 99340 70237</a></strong>
+              <strong><a href="tel:+917992269493">+91 79922 69493</a></strong>
               <p>Available to assist with your stay</p>
             </div>
             <ArrowRight size={16} />
-          </a>
+          </div>
 
           <a className="contact-detail-card" href="mailto:info@hotelorchidbodhgaya.com">
             <span><Mail size={19} /></span>

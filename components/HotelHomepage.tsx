@@ -1749,7 +1749,9 @@ export default function HotelHomepage() {
 
                 <div>
                   <strong>
-                    <a href="tel:+919876543210">+91 98765 43210</a>
+                    <a href="tel:+919934070237">+91 99340 70237</a>
+                    <br />
+                    <a href="tel:+917992269493">+91 79922 69493</a>
                   </strong>
 
                   <span>Available 24/7</span>
