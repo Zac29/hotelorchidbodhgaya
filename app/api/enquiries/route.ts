@@ -28,11 +28,12 @@ async function sendEnquiryEmail(enquiry: Record<EnquiryField, string>, idempoten
   const to = process.env.ENQUIRY_RECEIVER_EMAIL;
   if (!apiKey || !from || !to) throw new Error("Email notification is not configured.");
 
+  const row = (label: string, value: string): [string, string] => [label, value];
   const rows: Array<[string, string]> = [
-    ["Name", enquiry.name], ["Email", enquiry.email],
-    ["Phone", enquiry.phone], ["Arrival", enquiry.arrival], ["Departure", enquiry.departure],
-    ["Guests", enquiry.guests], ["Room", enquiry.room], ["Message", enquiry.message],
-    ["Source", enquiry.source],
+    row("Name", enquiry.name), row("Email", enquiry.email),
+    row("Phone", enquiry.phone), row("Arrival", enquiry.arrival), row("Departure", enquiry.departure),
+    row("Guests", enquiry.guests), row("Room", enquiry.room), row("Message", enquiry.message),
+    row("Source", enquiry.source),
   ].filter(([, value]) => value.length > 0);
   const text = rows.map(([label, value]) => `${label}: ${value}`).join("\n");
   const html = `<div style="font-family:Arial,sans-serif;color:#172b40;max-width:640px;margin:0 auto;padding:24px"><p style="margin:0 0 6px;color:#9a6a2d;font-size:12px;letter-spacing:1px">HOTEL ORCHID BODHGAYA</p><h2 style="margin:0 0 20px;font-size:22px">New website enquiry</h2><table style="width:100%;border-collapse:collapse;border-top:1px solid #e6e0d5">${rows.map(([label, value]) =>

@@ -372,7 +372,7 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
     setSent(false);
   }
 
-  async function submit(e: FormEvent) {
+  async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const next: string[] = [];
