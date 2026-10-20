@@ -35,11 +35,12 @@ import {
   Youtube,
   Coffee,
   ShieldCheck,
+  Globe,
 } from "lucide-react";
 
 import type { LucideIcon } from "lucide-react";
 
-import { images, attractionImages, galleryImages } from "@/lib/images";
+import { images, attractionImages } from "@/lib/images";
 
 import { attractions } from "@/lib/constants";
 
@@ -216,13 +217,13 @@ const locationCards = [
 
     descriptor: "",
 
-    distance: "Approx. 7 – 11 km",
+    distance: "Approx. 9 – 12 km",
 
     detail: "Depending on reference point",
 
     icon: Plane,
 
-    pin: false,
+    pin: true,
   },
 
   {
@@ -230,7 +231,7 @@ const locationCards = [
 
     descriptor: "(Railway Station)",
 
-    distance: "Approx. 15 – 20 km",
+    distance: "Approx. 15 – 25 km",
 
     detail: "from Bodh Gaya",
 
@@ -244,11 +245,11 @@ const locationCards = [
 
     descriptor: "",
 
-    distance: "Approx. 135 km",
+    distance: "Approx. 120 km",
 
     detail: "from Bodh Gaya",
 
-    icon: Building2,
+    icon: Globe,
 
     pin: true,
   },
@@ -476,12 +477,16 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
           </div>
         </div>
 
-        {compact && (
-          <div className="field">
-            <label htmlFor="contact-email">Email Address</label>
+        <div className="field">
+          <label htmlFor={`${compact ? "contact" : "hero"}-email`}>
+            Email Address
+          </label>
+
+          <div className="input-with-icon">
+            <Globe2 aria-hidden="true" size={17} />
 
             <input
-              id="contact-email"
+              id={`${compact ? "contact" : "hero"}-email`}
               type="email"
               value={form.email}
               onChange={(e) => update("email", e.target.value)}
@@ -489,7 +494,7 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
               autoComplete="email"
             />
           </div>
-        )}
+        </div>
 
         <div className="field">
           <label htmlFor={`${compact ? "contact" : "hero"}-mobile`}>
@@ -608,37 +613,20 @@ function EnquiryForm({ compact = false }: { compact?: boolean }) {
 }
 
 export default function HotelHomepage() {
-  const [galleryOpen, setGalleryOpen] = useState<number | null>(null);
-
   const [roomOpen, setRoomOpen] = useState<number | null>(null);
 
   useEffect(() => {
-    if (galleryOpen === null && roomOpen === null) return;
+    if (roomOpen === null) return;
 
     function handleModalKeys(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setGalleryOpen(null);
-
         setRoomOpen(null);
       }
-
-      if (galleryOpen !== null && event.key === "ArrowRight")
-        setGalleryOpen((current) =>
-          current === null ? null : (current + 1) % galleryImages.length,
-        );
-
-      if (galleryOpen !== null && event.key === "ArrowLeft")
-        setGalleryOpen((current) =>
-          current === null
-            ? null
-            : (current - 1 + galleryImages.length) % galleryImages.length,
-        );
     }
 
     window.addEventListener("keydown", handleModalKeys);
-
     return () => window.removeEventListener("keydown", handleModalKeys);
-  }, [galleryOpen, roomOpen]);
+  }, [roomOpen]);
 
   return (
     <main>
@@ -646,11 +634,10 @@ export default function HotelHomepage() {
         <Image
           className="hero-bg-image"
           src={images.hero}
-          alt=""
+          alt="Hotel Orchid Bodhgaya exterior"
           fill
           priority
           sizes="100vw"
-          aria-hidden="true"
         />
 
         <div className="hero-bg-overlay" aria-hidden="true" />
@@ -1391,7 +1378,7 @@ export default function HotelHomepage() {
 
                           <span style={{ margin: "0 6px" }}>·</span>
 
-                          <span>\* Rates subjected to revision</span>
+                          <span>* Rates subjected to revision</span>
                         </div>
 
                         <div style={{ display: "flex", gap: 10 }}>
@@ -1515,38 +1502,95 @@ export default function HotelHomepage() {
         </div>
       </section>
 
-      <section className="section gallery" id="gallery">
+      <section className="section home-gallery-preview" id="gallery">
         <div className="container">
-          <div className="section-head-row">
+          <div className="section-head-row home-gallery-preview-heading">
             <div className="reference-section-heading">
-              <h2 className="section-title">Our Gallery</h2>
-
+              <div className="eyebrow">A CLOSER LOOK AT HOTEL ORCHID</div>
+              <h2 className="section-title">Explore Our Gallery</h2>
               <p className="section-subtitle">
-                Take a glimpse of our property, rooms, dining and the beautiful
-                surroundings.
+                Discover our welcoming interiors, comfortable rooms and the
+                exterior of Hotel Orchid.
               </p>
             </div>
-
-            <Link href="/gallery" className="small-gold-btn gallery-cta">
+            <Link
+              href="/gallery"
+              className="small-gold-btn home-gallery-full-link"
+            >
               View Full Gallery <ArrowRight size={12} />
             </Link>
           </div>
 
-          <div className="gallery-grid">
-            {galleryImages.map((src, i) => (
-              <button
-                className="gallery-item"
-                key={src}
-                onClick={() => setGalleryOpen(i)}
-                aria-label={`Open gallery image ${i + 1}`}
+          <div
+            className="home-gallery-preview-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns:
+                "minmax(0, 1.35fr) repeat(2, minmax(0, 1fr))",
+              gridTemplateRows: "190px 160px",
+              gap: "12px",
+              width: "100%",
+              marginTop: "22px",
+            }}
+          >
+            {[
+              {
+                src: "/hotel-orchid.png",
+                alt: "Exterior view of Hotel Orchid in Bodh Gaya",
+                title: "Hotel Exterior",
+                className: "home-gallery-preview-featured",
+              },
+              {
+                src: "/lobby.png",
+                alt: "Welcoming lobby at Hotel Orchid",
+                title: "Welcoming Lobby",
+                className: "",
+              },
+              {
+                src: "/ac2.png",
+                alt: "Deluxe double air-conditioned room",
+                title: "Deluxe Double Room",
+                className: "",
+              },
+              {
+                src: "/corridor-1.png",
+                alt: "Bright hotel corridor",
+                title: "Thoughtful Interiors",
+                className: "",
+              },
+            ].map((item) => (
+              <Link
+                href="/gallery"
+                className={`home-gallery-preview-card ${item.className}`}
+                key={item.src}
+                style={{
+                  position: "relative",
+                  display: "block",
+                  minWidth: 0,
+                  minHeight: 0,
+                  height: "100%",
+                  overflow: "hidden",
+                  borderRadius: "8px",
+                  background: "#e8e0d4",
+                  boxShadow: "0 7px 20px rgba(34, 25, 11, .09)",
+                  gridRow: item.className.includes("featured")
+                    ? "span 2"
+                    : "auto",
+                }}
+                aria-label={`View ${item.title} in the full gallery`}
               >
                 <Image
-                  src={src}
-                  alt={`Hotel and Bodh Gaya travel inspiration ${i + 1}`}
-                  width={900}
-                  height={600}
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw"
                 />
-              </button>
+                <span className="home-gallery-preview-shade" />
+                <span className="home-gallery-preview-caption">
+                  {item.title}
+                </span>
+              </Link>
             ))}
           </div>
         </div>
@@ -1666,11 +1710,11 @@ export default function HotelHomepage() {
                   "Airport & Railway",
 
                   [
-                    "Gaya International Airport • \~ 7–11 km",
+                    "Gaya International Airport • ~ 7–11 km",
 
-                    "Gaya Junction • \~ 15–20 km",
+                    "Gaya Junction • ~ 15–20 km",
 
-                    "Patna Airport • \~ 135 km",
+                    "Patna Airport • ~ 135 km",
                   ],
                 ],
 
@@ -1794,68 +1838,6 @@ export default function HotelHomepage() {
           </a>
         </div>
       </section>
-
-      {/* Gallery Modal */}
-
-      {galleryOpen !== null && (
-        <div className="modal-backdrop" onClick={() => setGalleryOpen(null)}>
-          <div
-            className="modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="gallery-dialog-title"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h2 id="gallery-dialog-title" className="visually-hidden">
-              Photo gallery
-            </h2>
-
-            <button
-              className="modal-close"
-              onClick={() => setGalleryOpen(null)}
-              aria-label="Close gallery"
-            >
-              <X size={19} />
-            </button>
-
-            <button
-              className="modal-nav modal-prev"
-              onClick={() =>
-                setGalleryOpen((current) =>
-                  current === null
-                    ? 0
-                    : (current - 1 + galleryImages.length) %
-                      galleryImages.length,
-                )
-              }
-              aria-label="Previous photo"
-            >
-              ‹
-            </button>
-
-            <Image
-              src={galleryImages[galleryOpen]}
-              alt={`Hotel and Bodh Gaya travel inspiration ${galleryOpen + 1}`}
-              width={1400}
-              height={900}
-            />
-
-            <button
-              className="modal-nav modal-next"
-              onClick={() =>
-                setGalleryOpen((current) =>
-                  current === null ? 0 : (current + 1) % galleryImages.length,
-                )
-              }
-              aria-label="Next photo"
-            >
-              ›
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Room Details Modal */}
 
       {roomOpen !== null && (
         <div className="room-modal-backdrop" onClick={() => setRoomOpen(null)}>
@@ -2315,6 +2297,55 @@ export default function HotelHomepage() {
           }
         }
       `}</style>
+
+      <a
+        href="https://wa.me/919934070237?text=Hello%20Hotel%20Orchid%2C%20I%20would%20like%20to%20enquire%20about%20a%20stay."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with Hotel Orchid on WhatsApp"
+        title="Chat on WhatsApp"
+        style={{
+          position: "fixed",
+
+          right: "24px",
+
+          bottom: "24px",
+
+          zIndex: 9999,
+
+          width: "58px",
+
+          height: "58px",
+
+          borderRadius: "50%",
+
+          display: "flex",
+
+          alignItems: "center",
+
+          justifyContent: "center",
+
+          backgroundColor: "#25D366",
+
+          color: "#ffffff",
+
+          boxShadow: "0 4px 16px rgba(0, 0, 0, 0.25)",
+
+          textDecoration: "none",
+
+          transition: "transform 180ms ease, box-shadow 180ms ease",
+        }}
+      >
+        <svg
+          width="30"
+          height="30"
+          viewBox="0 0 32 32"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path d="M16.04 3C8.87 3 3.04 8.75 3.04 15.82c0 2.25.6 4.45 1.75 6.38L3 29l7.02-1.83a13.2 13.2 0 0 0 6.02 1.44h.01c7.17 0 13-5.75 13-12.82 0-3.43-1.36-6.65-3.83-9.08A13.02 13.02 0 0 0 16.04 3Zm0 23.45h-.01c-1.85 0-3.66-.49-5.24-1.41l-.38-.22-4.16 1.09 1.11-4.02-.25-.41a10.62 10.62 0 0 1-1.63-5.66c0-5.8 4.76-10.52 10.57-10.52 2.81 0 5.46 1.09 7.45 3.07a10.42 10.42 0 0 1 3.09 7.45c0 5.8-4.76 10.52-10.55 10.52Zm5.8-7.88c-.32-.16-1.88-.92-2.17-1.02-.29-.11-.5-.16-.71.16-.21.31-.81 1.02-.99 1.23-.18.21-.36.24-.68.08-.32-.16-1.34-.49-2.55-1.56-.94-.83-1.57-1.85-1.75-2.16-.18-.31-.02-.48.14-.64.14-.14.32-.37.48-.55.16-.18.21-.31.32-.52.11-.21.05-.39-.03-.55-.08-.16-.71-1.7-.97-2.33-.25-.61-.51-.53-.71-.54h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61s1.13 3.03 1.29 3.24c.16.21 2.22 3.37 5.37 4.72.75.32 1.33.51 1.79.65.75.24 1.43.21 1.97.13.6-.09 1.88-.76 2.15-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.61-.37Z" />
+        </svg>
+      </a>
     </main>
   );
 }

@@ -1,6 +1,6 @@
 
 export const images = {
-  hero: "/orchid-hero.webp",
+  hero: "/hotel-orchid.png",
 
   hotelExterior:
     "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1400&q=88",

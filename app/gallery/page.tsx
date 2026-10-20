@@ -6,70 +6,167 @@ import { ArrowDownRight, ArrowLeft, ArrowRight, Camera, X } from "lucide-react";
 import "./gallery.css";
 
 const galleryImages = [
+  // Hotel interiors and common areas
   {
-      src: "/lobby.png",
-      alt: "Welcoming hotel lobby at Hotel Orchid",
-      title: "Hotel Lobby",
-      category: "Interiors",
-      size: "",
-    },
+    src: "/hotel-orchid.png",
+    alt: "Exterior view of Hotel Orchid in Bodh Gaya",
+    title: "Hotel Orchid Exterior",
+    category: "Interiors",
+    size: "gallery-featured",
+  },
   {
-      src: "/lobby2.png",
-      alt: "Reception and guest welcome area",
-      title: "Reception & Guest Welcome",
-      category: "Interiors",
-      size: "gallery-wide",
-    },
+    src: "/lobby.png",
+    alt: "Welcoming hotel lobby at Hotel Orchid",
+    title: "Hotel Lobby",
+    category: "Interiors",
+    size: "",
+  },
   {
-      src: "/ac22.png",
-      alt: "Thoughtful interior details at Hotel Orchid",
-      title: "A Thoughtful Interior",
-      category: "Interiors",
-      size: "",
-    },
+    src: "/lobby2.png",
+    alt: "Reception and guest welcome area",
+    title: "Reception & Guest Welcome",
+    category: "Interiors",
+    size: "gallery-wide",
+  },
   {
-      src: "/dblbed.png",
-      alt: "A relaxed and comfortable guest room",
-      title: "A Relaxed Stay",
-      category: "Interiors",
-      size: "",
-    },
+    src: "/reception.png",
+    alt: "Hotel Orchid reception desk",
+    title: "Reception",
+    category: "Interiors",
+    size: "",
+  },
   {
-      src: "/ac2.png",
-      alt: "Deluxe double air-conditioned room at Hotel Orchid",
-      title: "Deluxe Double Room",
-      category: "Rooms",
-      size: "gallery-featured",
-    },
+    src: "/corridor-1.png",
+    alt: "Bright, polished hotel corridor",
+    title: "Hotel Corridor",
+    category: "Interiors",
+    size: "",
+  },
   {
-      src: "/ac3bed.png",
-      alt: "Deluxe triple room with comfortable beds",
-      title: "Deluxe Triple Room",
-      category: "Rooms",
-      size: "",
-    },
+    src: "/corridor-2.png",
+    alt: "Hotel corridor with safety equipment",
+    title: "Corridor Details",
+    category: "Interiors",
+    size: "",
+  },
   {
-      src: "/dblbed.png",
-      alt: "Standard guest room at Hotel Orchid",
-      title: "Standard Room",
-      category: "Rooms",
-      size: "",
-    },
+    src: "/list-stairs.png",
+    alt: "Hotel Orchid staircase and lift area",
+    title: "Staircase & Lift Area",
+    category: "Interiors",
+    size: "gallery-wide",
+  },
   {
-      src: "/ac2.png",
-      alt: "Another view of the deluxe double room",
-      title: "Deluxe Double Interior",
-      category: "Rooms",
-      size: "",
-    },
+    src: "/stairs.png",
+    alt: "Staircase inside Hotel Orchid",
+    title: "Staircase",
+    category: "Interiors",
+    size: "",
+  },
   {
-      src: "/ac3bed.png",
-      alt: "Family room arrangement at Hotel Orchid",
-      title: "Family Room Arrangement",
-      category: "Rooms",
-      size: "gallery-wide",
-    }
-];;
+    src: "/tv.jpeg",
+    alt: "Television and seating area in the hotel",
+    title: "Guest Entertainment",
+    category: "Interiors",
+    size: "",
+  },
+  {
+    src: "/room-perks.png",
+    alt: "Tea and room amenities prepared for guests",
+    title: "In-Room Amenities",
+    category: "Interiors",
+    size: "",
+  },
+  {
+    src: "/table-1.png",
+    alt: "Refreshments arranged for hotel guests",
+    title: "Guest Refreshments",
+    category: "Interiors",
+    size: "",
+  },
+  {
+    src: "/table-2.png",
+    alt: "Tea and coffee amenities in a guest room",
+    title: "Tea & Coffee Amenities",
+    category: "Interiors",
+    size: "",
+  },
+  {
+    src: "/Washroom-1.png",
+    alt: "Clean guest bathroom with washbasin and shower",
+    title: "Guest Bathroom",
+    category: "Interiors",
+    size: "",
+  },
+  {
+    src: "/Washroom-2.png",
+    alt: "Guest bathroom with modern fittings",
+    title: "Bathroom Details",
+    category: "Interiors",
+    size: "",
+  },
+
+  // Hotel exterior views
+  
+  {
+    src: "/front-view-2.webp",
+    alt: "Another exterior view of Hotel Orchid",
+    title: "Hotel Exterior View",
+    category: "Interiors",
+    size: "",
+  },
+
+  // Guest rooms
+  {
+    src: "/ac22.png",
+    alt: "Thoughtful interior details at Hotel Orchid",
+    title: "A Thoughtful Interior",
+    category: "Rooms",
+    size: "",
+  },
+  {
+    src: "/dblbed.png",
+    alt: "A relaxed and comfortable guest room",
+    title: "A Relaxed Stay",
+    category: "Rooms",
+    size: "",
+  },
+  {
+    src: "/ac2.png",
+    alt: "Deluxe double air-conditioned room at Hotel Orchid",
+    title: "Deluxe Double Room",
+    category: "Rooms",
+    size: "gallery-featured",
+  },
+  {
+    src: "/ac3bed.png",
+    alt: "Deluxe triple room with comfortable beds",
+    title: "Deluxe Triple Room",
+    category: "Rooms",
+    size: "",
+  },
+  {
+    src: "/dblbed.png",
+    alt: "Standard guest room at Hotel Orchid",
+    title: "Standard Room",
+    category: "Rooms",
+    size: "",
+  },
+  {
+    src: "/ac2.png",
+    alt: "Another view of the deluxe double room",
+    title: "Deluxe Double Interior",
+    category: "Rooms",
+    size: "",
+  },
+  {
+    src: "/ac3bed.png",
+    alt: "Family room arrangement at Hotel Orchid",
+    title: "Family Room Arrangement",
+    category: "Rooms",
+    size: "gallery-wide",
+  },
+];
 
 export default function GalleryPage() {
   const [activeImage, setActiveImage] = useState<number | null>(null);
@@ -122,6 +219,7 @@ export default function GalleryPage() {
         </div>
       </section>
 
+      {/* Existing gallery introduction remains intentionally unchanged/hidden. */}
       {/* <section className="gallery-intro" aria-labelledby="gallery-intro-title">
         <div className="gallery-intro-inner">
           <div className="gallery-section-index">
@@ -170,14 +268,19 @@ export default function GalleryPage() {
               <h2 id="gallery-collection-title">
                 A look <em>around.</em>
               </h2>
-              <p>Explore the spaces and details that make Hotel Orchid feel welcoming.</p>
+              <p>
+                Explore the spaces and details that make Hotel Orchid feel welcoming.
+              </p>
             </div>
             <div className="gallery-count">
               <Camera size={17} strokeWidth={1.5} aria-hidden="true" />
-              <span>{visibleImages.length.toString().padStart(2, "0")} photographs</span>
+              <span>
+                {visibleImages.length.toString().padStart(2, "0")} photographs
+              </span>
             </div>
           </div>
 
+          {/* Filters are kept as in the existing page; the filter bar remains hidden. */}
           {/* <div className="gallery-filters" aria-label="Filter gallery photographs">
             {filters.map((filter) => (
               <button
@@ -193,27 +296,25 @@ export default function GalleryPage() {
           </div> */}
 
           <div className="gallery-grid">
-            {visibleImages.map((image) => {
-              return (
-                <button
-                  className={`gallery-item ${image.size}`}
-                  key={image.src}
-                  type="button"
-                  onClick={() => setActiveImage(image.originalIndex)}
-                  aria-label={`View photograph: ${image.title}`}
-                >
-                  <img src={image.src} alt={image.alt} loading="lazy" />
-                  <span className="gallery-item-shade" />
-                  <span className="gallery-item-caption">
-                    <small>{image.category}</small>
-                    <strong>{image.title}</strong>
-                    <span className="gallery-item-arrow">
-                      <ArrowDownRight size={18} aria-hidden="true" />
-                    </span>
+            {visibleImages.map((image) => (
+              <button
+                className={`gallery-item ${image.size}`}
+                key={`${image.src}-${image.title}`}
+                type="button"
+                onClick={() => setActiveImage(image.originalIndex)}
+                aria-label={`View photograph: ${image.title}`}
+              >
+                <img src={image.src} alt={image.alt} loading="lazy" />
+                <span className="gallery-item-shade" />
+                <span className="gallery-item-caption">
+                  <small>{image.category}</small>
+                  <strong>{image.title}</strong>
+                  <span className="gallery-item-arrow">
+                    <ArrowDownRight size={18} aria-hidden="true" />
                   </span>
-                </button>
-              );
-            })}
+                </span>
+              </button>
+            ))}
           </div>
         </div>
       </section>
@@ -270,8 +371,14 @@ export default function GalleryPage() {
           >
             <ArrowLeft size={21} />
           </button>
-          <figure className="gallery-lightbox-figure" onClick={(event) => event.stopPropagation()}>
-            <img src={galleryImages[activeImage].src} alt={galleryImages[activeImage].alt} />
+          <figure
+            className="gallery-lightbox-figure"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <img
+              src={galleryImages[activeImage].src}
+              alt={galleryImages[activeImage].alt}
+            />
             <figcaption>
               <span>{galleryImages[activeImage].category}</span>
               <strong>{galleryImages[activeImage].title}</strong>
