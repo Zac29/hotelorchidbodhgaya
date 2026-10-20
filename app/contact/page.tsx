@@ -1,6 +1,6 @@
 "use client";
 
-import type { FormEvent } from "react";
+import { FormEvent, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Clock3, Mail, MapPin, Phone } from "lucide-react";
 import "./contact-page.css";
@@ -13,6 +13,7 @@ export default function ContactPage() {
     const subject = `Stay enquiry from ${data.get("name")}`;
     const body = `Name: ${data.get("name")}\nEmail: ${data.get("email")}\nPhone: ${data.get("phone")}\nArrival: ${data.get("arrival")}\nDeparture: ${data.get("departure")}\nGuests: ${data.get("guests")}\n\nMessage:\n${data.get("message")}`;
 
+    window.location.href = `mailto:hotelorchidbodhgaya@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = `mailto:hotelorchidbodhgaya@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
@@ -58,20 +59,23 @@ export default function ContactPage() {
             visit.
           </p>
 
-          <a className="contact-detail-card" href="tel:+919876543210">
+          <div className="contact-detail-card">
             <span><Phone size={19} /></span>
             <div>
               <small>CALL OUR TEAM</small>
-              <strong>+91 98765 43210</strong>
+              <strong><a href="tel:+919934070237">+91 99340 70237</a></strong>
+              <strong><a href="tel:+917992269493">+91 79922 69493</a></strong>
               <p>Available to assist with your stay</p>
             </div>
             <ArrowRight size={16} />
-          </a>
+          </div>
 
+          <a className="contact-detail-card" href="mailto:hotelorchidbodhgaya@gmail.com">
           <a className="contact-detail-card" href="mailto:hotelorchidbodhgaya@gmail.com">
             <span><Mail size={19} /></span>
             <div>
               <small>EMAIL US</small>
+              <strong>hotelorchidbodhgaya@gmail.com</strong>
               <strong>hotelorchidbodhgaya@gmail.com</strong>
               <p>Send us your questions and requests</p>
             </div>
