@@ -4,7 +4,6 @@ import {
   Instagram,
   MapPin,
   Phone,
-  Youtube,
 } from "lucide-react";
 
 const navItems = [
@@ -99,16 +98,8 @@ export default function Footer() {
 
               </a>
 
-              <a href="#contact" aria-label="YouTube">
-
-                <Youtube size={15} />
-
-              </a>
-
-              <a href="#contact" aria-label="WhatsApp">
-
+              <a href="https://wa.me/919934070237" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
                 <Phone size={15} />
-
               </a>
 
             </div>

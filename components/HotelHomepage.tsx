@@ -32,7 +32,6 @@ import {
   Send,
   UserRound,
   UserPlus,
-  Youtube,
   Coffee,
   ShieldCheck,
 } from "lucide-react";
@@ -202,7 +201,7 @@ const locationCards = [
 
     descriptor: "",
 
-    distance: "Main attraction in Bodh Gaya",
+    distance: "Approx. 1.2 km",
 
     detail: "Central Location",
 
@@ -216,7 +215,7 @@ const locationCards = [
 
     descriptor: "",
 
-    distance: "Approx. 7 – 11 km",
+    distance: "Approx. 7 km",
 
     detail: "Depending on reference point",
 
@@ -230,7 +229,7 @@ const locationCards = [
 
     descriptor: "(Railway Station)",
 
-    distance: "Approx. 15 – 20 km",
+    distance: "Approx. 14 km",
 
     detail: "from Bodh Gaya",
 
@@ -244,7 +243,7 @@ const locationCards = [
 
     descriptor: "",
 
-    distance: "Approx. 135 km",
+    distance: "Approx. 115 km",
 
     detail: "from Bodh Gaya",
 

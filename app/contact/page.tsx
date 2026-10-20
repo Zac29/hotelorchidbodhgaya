@@ -98,11 +98,11 @@ export default function ContactPage() {
             <ArrowRight size={16} />
           </div>
 
-          <a className="contact-detail-card" href="mailto:info@hotelorchidbodhgaya.com">
+          <a className="contact-detail-card" href="mailto:hotelorchidbodhgaya@gmail.com">
             <span><Mail size={19} /></span>
             <div>
               <small>EMAIL US</small>
-              <strong>info@hotelorchidbodhgaya.com</strong>
+              <strong>hotelorchidbodhgaya@gmail.com</strong>
               <p>Send us your questions and requests</p>
             </div>
             <ArrowRight size={16} />
@@ -113,12 +113,12 @@ export default function ContactPage() {
             <div>
               <small>FIND HOTEL ORCHID</small>
               <p>
-                Near Mahabodhi Temple
+                Near Karmappa Temple, Sujata Bypass
                 <br />
                 Bodh Gaya, Bihar 824231, India
               </p>
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Hotel+Orchid+Bodhgaya"
+                href="https://www.google.com/maps/place/Hotel+Orchid+Bodhgaya/@24.7006469,84.9817165,17z/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -172,14 +172,14 @@ export default function ContactPage() {
 
           <a
             className="contact-map"
-            href="https://www.google.com/maps/search/?api=1&query=Hotel+Orchid+Bodhgaya"
+            href="https://www.google.com/maps/place/Hotel+Orchid+Bodhgaya/@24.7006469,84.9817165,17z/"
             target="_blank"
             rel="noreferrer"
             aria-label="Find Hotel Orchid Bodhgaya on Google Maps"
           >
             <iframe
               title="Map showing Hotel Orchid Bodhgaya"
-              src="https://maps.google.com/maps?q=Hotel%20Orchid%20Bodhgaya&t=&z=14&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=24.7006469,84.9817165&t=&z=16&ie=UTF8&iwloc=&output=embed"
               loading="lazy"
             />
             <span><MapPin size={18} /> Open directions <ArrowRight size={15} /></span>
