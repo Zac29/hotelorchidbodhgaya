@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
@@ -21,6 +22,17 @@ export const metadata: Metadata = {
   title: "Hotel Orchid Bodhgaya | Luxury Stay Near Mahabodhi Temple",
   description:
     "Hotel Orchid Bodhgaya offers peaceful, modern hospitality near the sacred Mahabodhi Temple, with elegant rooms, dining and warm guest support.",
+
+  icons: {
+    icon: [
+      {
+        url: "/orchid-mark.svg",
+        type: "image/svg+xml",
+      },
+    ],
+    shortcut: "/orchid-mark.svg",
+  },
+
   openGraph: {
     title: "Hotel Orchid Bodhgaya",
     description: "A peaceful stay near Mahabodhi Temple.",
