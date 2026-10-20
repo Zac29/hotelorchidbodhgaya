@@ -1876,3 +1876,22 @@
     transition: none;
   }
 }
+
+
+/* Mobile-only fix for the Contact Us button */
+@media (max-width: 760px) {
+  .orchid-rooms .bottom-contact-link {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    margin-left: 0;
+    margin-right: 0;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  .orchid-rooms .bottom-contact-link svg {
+    flex-shrink: 0;
+  }
+}
