@@ -13,7 +13,7 @@ export default function ContactPage() {
     const subject = `Stay enquiry from ${data.get("name")}`;
     const body = `Name: ${data.get("name")}\nEmail: ${data.get("email")}\nPhone: ${data.get("phone")}\nArrival: ${data.get("arrival")}\nDeparture: ${data.get("departure")}\nGuests: ${data.get("guests")}\n\nMessage:\n${data.get("message")}`;
 
-    window.location.href = `mailto:info@hotelorchidbodhgaya.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:hotelorchidbodhgaya@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
   return (
@@ -68,11 +68,11 @@ export default function ContactPage() {
             <ArrowRight size={16} />
           </a>
 
-          <a className="contact-detail-card" href="mailto:info@hotelorchidbodhgaya.com">
+          <a className="contact-detail-card" href="mailto:hotelorchidbodhgaya@gmail.com">
             <span><Mail size={19} /></span>
             <div>
               <small>EMAIL US</small>
-              <strong>info@hotelorchidbodhgaya.com</strong>
+              <strong>hotelorchidbodhgaya@gmail.com</strong>
               <p>Send us your questions and requests</p>
             </div>
             <ArrowRight size={16} />
@@ -118,7 +118,7 @@ export default function ContactPage() {
               </label>
               <label>
                 Email address
-                <input name="email" type="email" autoComplete="email" placeholder="you@example.com" required />
+                <input name="email" type="email" autoComplete="email" placeholder="hotelorchidbodhgaya@gmail.com" required />
               </label>
             </div>
 
