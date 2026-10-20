@@ -148,13 +148,14 @@ export default function Navbar() {
         </nav>
 
         <div className="orchid-navbar-actions">
-          <a
-            className="orchid-phone-link"
-            href="tel:+919876543210"
-          >
+          <div className="orchid-phone-link">
             <Phone size={13} strokeWidth={2} />
-            <span>+91 98765 43210</span>
-          </a>
+            <span>
+              <a href="tel:+919934070237">+91 99340 70237</a>
+              <span aria-hidden="true"> / </span>
+              <a href="tel:+917992269493">+91 79922 69493</a>
+            </span>
+          </div>
 
           <Link
             className="orchid-enquire-button"
