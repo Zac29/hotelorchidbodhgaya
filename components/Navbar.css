@@ -184,6 +184,9 @@
   transition: color 180ms ease;
 }
 
+.orchid-phone-link > span { display: flex; gap: 4px; }
+.orchid-phone-link a { color: inherit; text-decoration: none; }
+
 .orchid-phone-link:hover {
   color: var(--orchid-gold);
 }
