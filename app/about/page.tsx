@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Clock3, MapPin, Sparkles, UtensilsCrossed } from "lucide-react";
+import { ArrowRight, Clock3, MapPin, PersonStanding, UtensilsCrossed } from "lucide-react";
 
 const highlights = [
   { icon: MapPin, title: "Close to the sacred sites", copy: "A convenient base for discovering Mahabodhi Temple and Bodh Gaya." },
-  { icon: Sparkles, title: "Comfort with care", copy: "Thoughtful rooms and the everyday details that help you settle in." },
+  { icon: PersonStanding, title: "Comfort with care", copy: "Thoughtful rooms and the everyday details that help you settle in." },
   { icon: UtensilsCrossed, title: "A warm welcome", copy: "Attentive hospitality for pilgrims, families and curious travellers." },
   { icon: Clock3, title: "Here when you need us", copy: "Our guest team is ready to help make your visit feel easy." },
 ];
