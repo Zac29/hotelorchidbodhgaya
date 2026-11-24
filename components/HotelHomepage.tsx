@@ -63,9 +63,9 @@ const roomTariffData = [
   {
     name: "Deluxe Double (A/C)",
 
-    noMeals: 1800,
+    noMeals: 2000,
 
-    breakfast: 2000,
+    breakfast: 2200,
 
     extraPax: 500,
 
@@ -96,9 +96,9 @@ const roomTariffData = [
   {
     name: "Deluxe Triple (A/C)",
 
-    noMeals: 2200,
+    noMeals: 2500,
 
-    breakfast: 2500,
+    breakfast: 2700,
 
     extraPax: 500,
 
@@ -295,26 +295,14 @@ const guestReviews = [
 function Logo() {
   return (
     <a className="logo" href="#home" aria-label="Hotel Orchid Bodhgaya home">
-      <svg
+      <Image
         className="logo-mark"
-        viewBox="0 0 48 48"
-        aria-hidden="true"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M24 38V23" />
-
-        <path d="M24 29C15 29 10 24 9 15c9 0 15 4 15 14Z" />
-
-        <path d="M24 29c9 0 15-5 15-14-9 0-15 4-15 14Z" />
-
-        <path d="M24 25c-6-5-7-11 0-18 7 7 6 13 0 18Z" />
-
-        <path d="M12 37c7-3 17-3 24 0" />
-      </svg>
+        src="/logo.png"
+        alt="Hotel Orchid Bodhgaya logo"
+        width={48}
+        height={48}
+        style={{ objectFit: "contain" }}
+      />
 
       <span>
         <span className="logo-title">HOTEL ORCHID</span>

@@ -69,8 +69,8 @@ export const rooms = [
   {
     id: "deluxe-double",
     name: "Deluxe Double (A/C)",
-    noMeals: 1800,
-    breakfast: 2000,
+    noMeals: 2000,
+    breakfast: 2200,
     extraPax: 500,
     guests: "2 Guests",
     bed: "1 King / Double Bed",
@@ -90,8 +90,8 @@ export const rooms = [
   {
     id: "deluxe-triple",
     name: "Deluxe Triple (A/C)",
-    noMeals: 2200,
-    breakfast: 2500,
+    noMeals: 2500,
+    breakfast: 2800,
     extraPax: 500,
     guests: "3 Guests",
     bed: "1 Double + 1 Single Bed",

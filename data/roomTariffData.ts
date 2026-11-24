@@ -30,9 +30,9 @@ export const roomTariffData: RoomTariffItem[] = [
 
     name: "Deluxe Double (A/C)",
 
-    noMeals: 1800,
+    noMeals: 2000,
 
-    breakfast: 2000,
+    breakfast: 2200,
 
     extraPax: 500,
 
@@ -65,9 +65,9 @@ export const roomTariffData: RoomTariffItem[] = [
 
     name: "Deluxe Triple (A/C)",
 
-    noMeals: 2200,
+    noMeals: 2500,
 
-    breakfast: 2500,
+    breakfast: 2800,
 
     extraPax: 500,
 

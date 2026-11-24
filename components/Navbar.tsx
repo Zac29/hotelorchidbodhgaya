@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Menu, Phone, X } from "lucide-react";
 import "./Navbar.css";
 
@@ -20,46 +21,15 @@ function Logo() {
       className="orchid-logo"
       aria-label="Hotel Orchid Bodhgaya home"
     >
-      <svg
+      <Image
         className="orchid-logo-mark"
-        viewBox="0 0 48 48"
-        fill="none"
-        aria-hidden="true"
-      >
-        <g
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path
-            d="M24 23C16 16 17 9 24 3C31 9 32 16 24 23Z"
-            fill="currentColor"
-            fillOpacity=".9"
-          />
-          <path
-            d="M22 26C11 28 6 22 5 15C15 14 22 18 24 25Z"
-            fill="currentColor"
-            fillOpacity=".8"
-          />
-          <path
-            d="M26 26C37 28 42 22 43 15C33 14 26 18 24 25Z"
-            fill="currentColor"
-            fillOpacity=".8"
-          />
-          <path
-            d="M23 29C16 24 12 28 12 34C17 35 22 32 24 28Z"
-            fill="currentColor"
-          />
-          <path
-            d="M25 29C32 24 36 28 36 34C31 35 26 32 24 28Z"
-            fill="currentColor"
-          />
-          <path d="M24 25V40" />
-          <path d="M11 39C19 36 29 36 37 39" />
-          <path d="M15 42H33" />
-        </g>
-      </svg>
+        src="/logo.png"
+        alt="Hotel Orchid Bodhgaya logo"
+        width={48}
+        height={48}
+        priority
+        style={{ objectFit: "contain" }}
+      />
 
       <span className="orchid-logo-copy">
         <span className="orchid-logo-title">HOTEL ORCHID</span>

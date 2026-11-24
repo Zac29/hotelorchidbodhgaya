@@ -1,4 +1,4 @@
-
+import Image from "next/image";
 import {
   Facebook,
   Globe2,
@@ -22,22 +22,14 @@ function Logo() {
       href="#home"
       aria-label="Hotel Orchid Bodhgaya home"
     >
-      <svg
+      <Image
         className="logo-mark"
-        viewBox="0 0 48 48"
-        aria-hidden="true"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M24 38V23" />
-        <path d="M24 29C15 29 10 24 9 15c9 0 15 4 15 14Z" />
-        <path d="M24 29c9 0 15-5 15-14-9 0-15 5-15 14Z" />
-        <path d="M24 25c-6-5-7-11 0-18 7 7 6 13 0 18Z" />
-        <path d="M12 37c7-3 17-3 24 0" />
-      </svg>
+        src="/logo.png"
+        alt="Hotel Orchid Bodhgaya logo"
+        width={48}
+        height={48}
+        style={{ objectFit: "contain" }}
+      />
 
       <span>
         <span className="logo-title">HOTEL ORCHID</span>
@@ -69,13 +61,16 @@ export default function Footer() {
               <Instagram size={15} />
             </a>
 
-              <a href="https://wa.me/919934070237" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
-                <Phone size={15} />
-              </a>
-
-            </div>
-
+            <a
+              href="https://wa.me/919934070237"
+              aria-label="WhatsApp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Phone size={15} />
+            </a>
           </div>
+        </div>
 
         {/* Quick Links */}
         <div className="footer-column">
